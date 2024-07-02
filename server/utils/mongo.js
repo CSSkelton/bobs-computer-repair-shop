@@ -9,6 +9,7 @@
 const { MongoClient } = require("mongodb");
 
 const MONGO_URL = "mongodb+srv://bcrs_user:p4ssw0rd@cluster0.ifz0to0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
 // Can put specific collection before ? in string
 
 const mongo = async (operations, next) => {
