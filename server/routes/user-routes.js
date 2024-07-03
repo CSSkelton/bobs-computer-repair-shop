@@ -99,6 +99,7 @@ router.get("/:email", (req, res, next) => {
     next(err);
   }
 });
+
 /**
  * createUser
  * @openapi
