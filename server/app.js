@@ -13,7 +13,6 @@ const path = require('path')
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const userRoute = require('./routes/user-routes');
-const port = process.env.PORT || 4000;
 
 // Create the Express app
 const app = express()
@@ -24,9 +23,7 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, '../dist/bcrs')))
 app.use('/', express.static(path.join(__dirname, '../dist/bcrs')))
-app.listen(port, () => {
-  console.log(`BCRS listening on port ${port}`)
-})
+
 
 const options = {
   definition: {

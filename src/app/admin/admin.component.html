@@ -1,1 +1,38 @@
-<p>admin works!</p>
+<div class="container-fluid pt-2 full-height" style="height: 100vh;">
+
+  <h1 class="text-center" style="margin: 25px auto 25px; padding: 5px; background-color: #946b2d; width: 500px;">Admin</h1>
+
+  <div class="admin-table-container col-sm-12">
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let user of users">
+        <tr>
+          <td scope="row">
+            <a routerLink="/admin">
+              {{ user.firstName }} {{ user.lastName }}
+            </a>
+          </td>
+          <td scope="row">{{ user.email }}</td>
+          <td scope="row">{{ user.role.join(',') }}</td>
+          <td>
+            <a routerLink="/admin">
+              <span class="material-icons">edit</span>
+            </a>
+          </td>
+          <td>
+            <a routerLink="/admin">
+              <span class="material-icons">delete</span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
