@@ -39,8 +39,6 @@ const routes: Routes = [
         component: AdminComponent,
         title: 'BCRS: Administration',
       },
-
-      { path: '**', component: PagenotfoundComponent },
     ],
   },
   {
@@ -49,6 +47,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./security/security.module').then((m) => m.SecurityModule),
   },
+  { path: '**', component: PagenotfoundComponent },
 ];
 
 @NgModule({
