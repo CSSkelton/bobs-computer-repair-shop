@@ -16,6 +16,7 @@ import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component
 import { NavComponent } from './layouts/nav/nav.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     BaseLayoutComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
