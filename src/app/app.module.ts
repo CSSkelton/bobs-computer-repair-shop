@@ -35,7 +35,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     AdminComponent,
     PagenotfoundComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, MatDialogModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
