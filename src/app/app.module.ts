@@ -21,6 +21,9 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -29,17 +32,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BaseLayoutComponent,
     NavComponent,
     FooterComponent,
-    AdminComponent
+    AdminComponent,
+    PagenotfoundComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    AdminRoutingModule,
-    BrowserAnimationsModule,
-    MatDialogModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
