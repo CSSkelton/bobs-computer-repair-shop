@@ -1,7 +1,8 @@
 /**
  * Title: app-routing.module.ts
  * Author: Professor Krasso
- * Date: 8/5/23
+ * Editor: Cody Skelton
+ * Date: 07.02.2024
  */
 
 // imports statements
@@ -9,22 +10,33 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { HomeComponent } from './home/home.component';
+import { authGuard } from './shared/auth.guard';
+import { AdminComponent } from './admin/admin.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
   {
     path: '',
     component: BaseLayoutComponent,
+  //  Uncomment after signin page implemented
+  //  canActivate: [ authGuard ],
     children: [
       {
         path: '',
         component: HomeComponent,
-        title: 'BCRS: Home' // title for the home page
+        title: 'BCRS: Home', // title for the home page
       },
       {
         path: 'home',
         component: HomeComponent,
         title: 'BCRS: Home'
+      },
+      // This path is temporary until we get a working signin and role guard
+      // Then, move this to admin-routing.module.ts under a role guard
+      {
+        path: 'admin',
+        component: AdminComponent,
+        title: 'BCRS: Administration'
       }
     ]
   },

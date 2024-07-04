@@ -1,7 +1,8 @@
 /**
  * Title: security.module.ts
  * Author: Professor Krasso
- * Date: 8/5/23
+ * Editor: Cody Skelton
+ * Date: 07.02.2024
 */
 
 // imports statements
@@ -10,6 +11,7 @@ import { CommonModule } from '@angular/common';
 
 import { SecurityRoutingModule } from './security-routing.module';
 import { SecurityComponent } from './security.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { SecurityComponent } from './security.component';
   ],
   imports: [
     CommonModule,
-    SecurityRoutingModule
+    SecurityRoutingModule,
+    HttpClientModule
   ]
 })
 export class SecurityModule { }
