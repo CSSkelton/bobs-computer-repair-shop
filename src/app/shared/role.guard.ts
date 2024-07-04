@@ -13,7 +13,10 @@ export const roleGuard: CanActivateFn = (route, state) => {
 
   console.log('Getting here');
 
-  let sessionUser = null;
+  let sessionUser = {
+    role: "admin"
+  }
+  //let sessionUser = null;
   //JSON.parse(cookie.get('session_user'))
   // TODO: replace after signin component
 
