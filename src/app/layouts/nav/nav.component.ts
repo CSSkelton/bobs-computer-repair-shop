@@ -6,7 +6,13 @@
  */
 
 // imports statements
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { MatToolbar } from '@angular/material/toolbar';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import{ Router } from'@angular/router';
+
+
 
 @Component({
   selector: 'app-nav',
@@ -15,4 +21,5 @@ import { Component } from '@angular/core';
 })
 export class NavComponent {
 
+ 
 }
