@@ -32,9 +32,14 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
-        title: 'BCRS: Home'
-      }
-    ]
+        title: 'BCRS: Home',
+      },
+      {
+        path: 'admin',
+        component: AdminComponent,
+        title: 'BCRS: Administration',
+      },
+    ],
   },
   {
     // path for the security module (e.g. login, register, forgot password, etc.)
