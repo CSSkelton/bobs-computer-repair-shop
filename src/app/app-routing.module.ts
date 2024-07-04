@@ -26,6 +26,7 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
+        //component: BaseLayoutComponent,
         title: 'BCRS: Home', // title for the home page
       },
       {
@@ -41,6 +42,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./security/security.module').then((m) => m.SecurityModule),
   },
+
   { path: '**', component: PagenotfoundComponent },
 ];
 
