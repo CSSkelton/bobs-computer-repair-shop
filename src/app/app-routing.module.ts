@@ -26,14 +26,20 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
+        //component: BaseLayoutComponent,
         title: 'BCRS: Home', // title for the home page
       },
       {
         path: 'home',
         component: HomeComponent,
-        title: 'BCRS: Home'
-      }
-    ]
+        title: 'BCRS: Home',
+      },
+      {
+        path: 'admin',
+        component: AdminComponent,
+        title: 'BCRS: Administration',
+      },
+    ],
   },
   {
     // path for the security module (e.g. login, register, forgot password, etc.)
@@ -41,6 +47,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./security/security.module').then((m) => m.SecurityModule),
   },
+
   { path: '**', component: PagenotfoundComponent },
 ];
 
