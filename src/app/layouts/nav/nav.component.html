@@ -1,23 +1,17 @@
 <nav>
-  <mat-toolbar color="primary" style="background-color: #946b2d; color: black">
-    <mat-toolbar-row>
-      <div class="logo">
-        <img src="" />
-      </div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-      <div style="width: 80%">
-        <div fxLayout="row wrap" fxLayoutAlign="end start">
-          <button style="margin-left: 500px" mat-button routerLink="/">
-            FAQ
-          </button>
-          <button mat-button routerLink="/admin">Administration</button>
-          <button mat-button routerLink="/">Registration</button>
-          <button mat-button routerLink="/">Service Repair</button>
-          <button mat-button routerLink="/">Password Reset</button>
-          <button mat-button routerLink="/">Profile</button>
-          <button mat-button (click)="signOut()">Sign Out</button>
-        </div>
-      </div>
-    </mat-toolbar-row>
-  </mat-toolbar>
+  <div class="navbar">
+    <div class="logo">
+      <img src="./assets/Bob's Computer Logo 2.png" height="100" />
+    </div>
+    <a class="nav-link" routerLink="#">FAQ</a>
+    <a class="nav-link" routerLink="#">Administration </a>
+    <a class="nav-link" routerLink="#">Registration</a>
+    <a class="nav-link" routerLink="#">Service Repair</a>
+    <a class="nav-link" routerLink="#">Password Reset</a>
+    <a class="nav-link" routerLink="#">Profile</a>
+
+    <button class="button button2">SignOut</button>
+  </div>
 </nav>
