@@ -1,7 +1,8 @@
 /**
  * Title: user-routes.js
  * Author: Cody Skelton
- * Date: 07.01.2024
+ * Updated by: Jeremy Lates
+ * Date: 07.07.2024
  */
 "use strict";
 
@@ -12,7 +13,7 @@ const { ObjectId } = require("mongodb");
 
 const createError = require("http-errors");
 const router = express.Router();
-const Ajv = require('ajv');
+const Ajv = require("ajv");
 const ajv = new Ajv();
 
 /**
@@ -192,7 +193,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-
 /**
  * updateUser
  * @openapi
@@ -215,8 +215,6 @@ router.post("/", async (req, res) => {
  *       properties:
  *        email:
  *         type: string
- *        password:
- *         type: string
  *        firstName:
  *         type: string
  *        lastName:
@@ -225,49 +223,6 @@ router.post("/", async (req, res) => {
  *         type: string
  *        address:
  *         type: string
- *        isDisabled:
- *         type: boolean
- *        role:
- *         type: array
- *         items:
- *          type: string
- *        selectedSecurityQuestions:
- *         type: array
- *         items:
- *          type: object
- *          properties:
- *           question:
- *            type: string
- *           answer:
- *            type: string
- *        invoices:
- *         type: array
- *         items:
- *          type: object
- *          properties:
- *           email:
- *            type: string
- *           fullName:
- *            type: string
- *           lineItems:
- *            type: array
- *            items:
- *             type: object
- *             properties:
- *              service:
- *               type: string
- *              price:
- *               type: number
- *           partsAmount:
- *            type: number
- *           laborAmount:
- *            type: number
- *           lineItemTotal:
- *            type: number
- *           invoiceTotal:
- *            type: number
- *           orderDate:
- *            type: string
  *   responses:
  *    '204':
  *     description: No content
@@ -281,108 +236,126 @@ router.post("/", async (req, res) => {
  *    - User
  */
 const userSchema = {
-  type: 'object',
+  type: "object",
   additionalProperties: false,
   properties: {
-    email: { type: 'string' },
-    password: { type: 'string' },
-    firstName: { type: 'string' },
-    lastName: { type: 'string' },
-    phoneNumber: { type: 'string' },
-    address: { type: 'string' },
-    isDisabled: { type: 'boolean' },
-    role: {
-      type: 'array',
-      items: { type: 'string' }
-    },
-    selectedSecurityQuestions: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          question: { type: 'string' },
-          answer: { type: 'string' }
-        },
-        //required: [ 'question', 'answer' ],
-        additionalProperties: false
-      }
-    },
-    invoices: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          email: { type: 'string' },
-          fullName: { type: 'string' },
-          lineItems: {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: {
-                service: { type: 'string' },
-                price: { type: 'number' }
-              },
-              //required: [ 'service', 'part' ],
-              additionalProperties: false
-            }
-          },
-          partsAmount: { type: 'number' },
-          laborAmount: { type: 'number' },
-          lineItemTotal: { type: 'number' },
-          invoiceTotal: { type: 'number' },
-          orderDate: { type: 'string' }
-        },
-        /*required: [
-          'email', 'fullName', 'partsAmount', 'laborAmount',
-          'lineItemTotal', 'invoiceTotal', 'orderDate'
-        ],
-        */
-        additionalProperties: false
-      }
-    },
-  }
-}
+    email: { type: "string" },
+    firstName: { type: "string" },
+    lastName: { type: "string" },
+    phoneNumber: { type: "string" },
+    address: { type: "string" },
+  },
+};
 router.put("/:userId", (req, res, next) => {
   try {
-
-    mongo(async db => {
-      const user = await db.collection('users').findOne( { 'email': req.params.userId } );
+    mongo(async (db) => {
+      const user = await db
+        .collection("users")
+        .findOne({ email: req.params.userId });
 
       if (!user) {
-        return next(createError(404, `User not found with User ID ${req.params.userId}`));
+        return next(
+          createError(404, `User not found with User ID ${req.params.userId}`)
+        );
       }
 
       const updatedUser = req.body;
 
-      const validator = ajv.compile(userSchema);
-      const valid = validator(updatedUser);
-
-      if (!valid) {
-        return next(createError(400, 'Invalid task payload', validator.errors));
+      // If no specified property, use previous value
+      if (updatedUser.email == "string") {
+        updatedUser.email = user.email;
+      }
+      if (updatedUser.firstName == "string") {
+        updatedUser.firstName = user.firstName;
+      }
+      if (updatedUser.lastName == "string") {
+        updatedUser.lastName = user.lastName;
+      }
+      if (updatedUser.phoneNumber == "string") {
+        updatedUser.phoneNumber = user.phoneNumber;
+      }
+      if (updatedUser.address == "string") {
+        updatedUser.address = user.address;
       }
 
-      const result = await db.collection('users').updateOne(
-        { 'email': req.params.userId },
+      console.log(updatedUser);
+
+      const validator = ajv.compile(userSchema);
+      console.log("got here");
+      const valid = validator(updatedUser);
+      if (valid) {
+        console.log("it was def valid");
+      }
+
+      if (!valid) {
+        return next(createError(400, "Invalid task payload", validator.errors));
+      }
+
+      const result = await db.collection("users").updateOne(
+        { email: req.params.userId },
         {
           $set: {
             email: updatedUser.email,
-            password: updatedUser.password,
             firstName: updatedUser.firstName,
             lastName: updatedUser.lastName,
             phoneNumber: updatedUser.phoneNumber,
             address: updatedUser.address,
-            isDisabled: updatedUser.isDisabled,
-            role: updatedUser.role,
-            selectedSecurityQuestions: updatedUser.selectedSecurityQuestions,
-            invoices: updatedUser.invoices
-          }
+          },
         }
-      )
+      );
 
-      res.status(204).send(updatedUser);
+      res.status(204).send(result);
     }, next);
   } catch (err) {
-    console.error('err', err);
+    console.error("err", err);
+    next(err);
+  }
+});
+
+/**
+ * deleteUser
+ * @openapi
+ * /api/users/{userId}:
+ *  delete:
+ *   summary: delete user from accessible directory
+ *   description: mark user document as inactive
+ *   parameters:
+ *    - name: userId
+ *      in: path
+ *      required: true
+ *      description: User email
+ *      schema:
+ *       type: string
+ *   responses:
+ *    '204':
+ *     description: No content. Operation successful
+ *    '404':
+ *     description: User not found
+ *    '500':
+ *     description: Server exception
+ *    '501':
+ *     description: MongoDB Exception
+ */
+router.delete('/:userId', (req, res, next) => {
+  try {
+    let { userId } = req.params;
+
+    mongo (async db => {
+      let user = await db.collection('users').findOne({ 'email': userId });
+
+      if (!user) {
+        return next(createError(404, `User not found with email ${userId}`));
+      }
+
+      const result = await db.collection('users').updateOne(
+        { 'email': userId },
+        { $set: { isDisabled: true }}
+      )
+
+      res.status(204).send(result);
+    }, next);
+  } catch(err) {
+    console.log('err', err);
     next(err);
   }
 });

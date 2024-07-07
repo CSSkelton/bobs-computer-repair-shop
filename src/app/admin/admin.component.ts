@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 
-
 export interface User {
   email: string;
   firstName: string;
@@ -26,15 +25,16 @@ export interface UserViewModel {
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  styleUrls: ['./admin.component.css'],
 })
-
 export class AdminComponent {
+  // employeeEmail = 'jeremylates@gmil.com';
 
   // Local variables
   users: User[];
 
   constructor(private dialog: MatDialog, private http: HttpClient) {
+    console.log('Hello World!');
     this.users = [];
 
     this.http.get('/api/users').subscribe({
@@ -44,11 +44,7 @@ export class AdminComponent {
       error: () => {
         console.error('Unable to get user data');
       },
-      complete: () => {
-
-      }
-    })
+      complete: () => {},
+    });
   }
-
 }
-

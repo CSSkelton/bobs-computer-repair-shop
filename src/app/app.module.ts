@@ -1,7 +1,7 @@
 /**
  * Title: app.module.ts
  * Author: Professor Krasso
- * Editor: Cody Skelton
+ * Editor: Cody Skelton, Jeremy Lates
  * Date: 07.01.2024
  */
 
@@ -22,8 +22,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SigninComponent } from './security/signin/signin.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatCardModule } from '@angular/material/card';
+
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -39,10 +42,19 @@ import { CookieService } from 'ngx-cookie-service';
     NavComponent,
     FooterComponent,
     AdminComponent,
-    SigninComponent
+    SigninComponent,
+    AdminComponent,
+    PagenotfoundComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    MatDialogModule,
+    HttpClientModule,
+    FormsModule,
+    MatToolbarModule,
+    MatButtonModule,
     AppRoutingModule,
     MatDialogModule,
     HttpClientModule,
@@ -56,6 +68,6 @@ import { CookieService } from 'ngx-cookie-service';
     ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
