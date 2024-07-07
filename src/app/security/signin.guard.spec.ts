@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SignInGuard } from './signin.guard';
+import { SignInGuard } from './sigin.guard';
 
 describe('SignInGuard', () => {
   let guard: SignInGuard;
