@@ -1,3 +1,9 @@
+/**
+ * Title: pagenotfound.component.ts
+ * Author: Jeremy Lates
+ * Date: 07.04.2024
+ */
+
 import { Component } from '@angular/core';
 
 @Component({
