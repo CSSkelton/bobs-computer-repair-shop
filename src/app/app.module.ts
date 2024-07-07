@@ -20,7 +20,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { SigninComponent } from './security/signin/signin.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 
@@ -31,7 +31,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     BaseLayoutComponent,
     NavComponent,
     FooterComponent,
-    AdminComponent
+    AdminComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
