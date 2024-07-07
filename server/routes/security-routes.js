@@ -22,6 +22,19 @@ const ajv = new Ajv();
  *   summary: user sign in
  *   tags:
  *    - Security
+ *   requestBody:
+ *    description: login credentials
+ *    content:
+ *     application/json:
+ *      schema:
+ *       required:
+ *        - email
+ *        - password
+ *       properties:
+ *        email:
+ *         type: string
+ *        password:
+ *         type: string
  *   responses:
  *    '200':
  *     description: OK
@@ -64,9 +77,9 @@ router.post('/signin', (req, res, next) => {
         return next(createError(404, `No user found with ${signin.email}`))
       }
 
-      let passwordIsValid = bcrypt.compareSync(signin.password, user.password)
-
-      if (!passwordIsValid) {
+//    let passwordIsValid = bcrypt.compareSync(signin.password, user.password)
+//    [!passwordIsValid ] other conditional - use if testing on new user accounts
+      if (signin.password != user.password) {
         console.error('Invalid user password');
         return next(createError(400, 'Invalid password'))
       }
@@ -78,3 +91,5 @@ router.post('/signin', (req, res, next) => {
     next(err)
   }
 })
+
+module.exports = router;
