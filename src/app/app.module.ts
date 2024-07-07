@@ -25,6 +25,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
+import { EditUserComponent } from './edit-user/edit-user.component';
+
+import { FormsModule } from '@angular/forms';
+
+import { MatButtonModule } from '@angular/material/button';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,8 +40,17 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     FooterComponent,
     AdminComponent,
     PagenotfoundComponent,
+    EditUserComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, MatDialogModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatDialogModule,
+    HttpClientModule,
+    FormsModule,
+    MatToolbarModule,
+    MatButtonModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

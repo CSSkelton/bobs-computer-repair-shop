@@ -12,7 +12,7 @@ const { ObjectId } = require("mongodb");
 
 const createError = require("http-errors");
 const router = express.Router();
-const Ajv = require('ajv');
+const Ajv = require("ajv");
 const ajv = new Ajv();
 
 /**
@@ -192,7 +192,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-
 /**
  * updateUser
  * @openapi
@@ -281,75 +280,78 @@ router.post("/", async (req, res) => {
  *    - User
  */
 const userSchema = {
-  type: 'object',
+  type: "object",
   additionalProperties: false,
   properties: {
-    email: { type: 'string' },
-    password: { type: 'string' },
-    firstName: { type: 'string' },
-    lastName: { type: 'string' },
-    phoneNumber: { type: 'string' },
-    address: { type: 'string' },
-    isDisabled: { type: 'boolean' },
+    email: { type: "string" },
+    password: { type: "string" },
+    firstName: { type: "string" },
+    lastName: { type: "string" },
+    phoneNumber: { type: "string" },
+    address: { type: "string" },
+    isDisabled: { type: "boolean" },
     role: {
-      type: 'array',
-      items: { type: 'string' }
+      type: "array",
+      items: { type: "string" },
     },
     selectedSecurityQuestions: {
-      type: 'array',
+      type: "array",
       items: {
-        type: 'object',
+        type: "object",
         properties: {
-          question: { type: 'string' },
-          answer: { type: 'string' }
+          question: { type: "string" },
+          answer: { type: "string" },
         },
         //required: [ 'question', 'answer' ],
-        additionalProperties: false
-      }
+        additionalProperties: false,
+      },
     },
     invoices: {
-      type: 'array',
+      type: "array",
       items: {
-        type: 'object',
+        type: "object",
         properties: {
-          email: { type: 'string' },
-          fullName: { type: 'string' },
+          email: { type: "string" },
+          fullName: { type: "string" },
           lineItems: {
-            type: 'array',
+            type: "array",
             items: {
-              type: 'object',
+              type: "object",
               properties: {
-                service: { type: 'string' },
-                price: { type: 'number' }
+                service: { type: "string" },
+                price: { type: "number" },
               },
               //required: [ 'service', 'part' ],
-              additionalProperties: false
-            }
+              additionalProperties: false,
+            },
           },
-          partsAmount: { type: 'number' },
-          laborAmount: { type: 'number' },
-          lineItemTotal: { type: 'number' },
-          invoiceTotal: { type: 'number' },
-          orderDate: { type: 'string' }
+          partsAmount: { type: "number" },
+          laborAmount: { type: "number" },
+          lineItemTotal: { type: "number" },
+          invoiceTotal: { type: "number" },
+          orderDate: { type: "string" },
         },
         /*required: [
           'email', 'fullName', 'partsAmount', 'laborAmount',
           'lineItemTotal', 'invoiceTotal', 'orderDate'
         ],
         */
-        additionalProperties: false
-      }
+        additionalProperties: false,
+      },
     },
-  }
-}
+  },
+};
 router.put("/:userId", (req, res, next) => {
   try {
-
-    mongo(async db => {
-      const user = await db.collection('users').findOne( { 'email': req.params.userId } );
+    mongo(async (db) => {
+      const user = await db
+        .collection("users")
+        .findOne({ email: req.params.userId });
 
       if (!user) {
-        return next(createError(404, `User not found with User ID ${req.params.userId}`));
+        return next(
+          createError(404, `User not found with User ID ${req.params.userId}`)
+        );
       }
 
       const updatedUser = req.body;
@@ -358,11 +360,11 @@ router.put("/:userId", (req, res, next) => {
       const valid = validator(updatedUser);
 
       if (!valid) {
-        return next(createError(400, 'Invalid task payload', validator.errors));
+        return next(createError(400, "Invalid task payload", validator.errors));
       }
 
-      const result = await db.collection('users').updateOne(
-        { 'email': req.params.userId },
+      const result = await db.collection("users").updateOne(
+        { email: req.params.userId },
         {
           $set: {
             email: updatedUser.email,
@@ -374,15 +376,15 @@ router.put("/:userId", (req, res, next) => {
             isDisabled: updatedUser.isDisabled,
             role: updatedUser.role,
             selectedSecurityQuestions: updatedUser.selectedSecurityQuestions,
-            invoices: updatedUser.invoices
-          }
+            invoices: updatedUser.invoices,
+          },
         }
-      )
+      );
 
       res.status(204).send(updatedUser);
     }, next);
   } catch (err) {
-    console.error('err', err);
+    console.error("err", err);
     next(err);
   }
 });
