@@ -10,11 +10,38 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { UserInterface } from 'src/app/newuser-interface';
+import { NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+
+
 @Component({
   selector: 'app-create-employee',
   templateUrl: './create-employee.component.html',
   styleUrls: ['./create-employee.component.css']
 })
+
+export class EditUserComponent {
+  email: any;
+  url: any;
+
+
+export interface UserInterface {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  address: string;
+  isDisabled: boolean;
+  role: string;
+
+};
+
+
+
+
 export class CreateEmployeeComponent {
   errorMessage: string // holds error messages
 
