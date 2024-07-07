@@ -1,7 +1,7 @@
 /**
  * Title: app-routing.module.ts
  * Author: Professor Krasso
- * Editor: Cody Skelton
+ * Editor: Cody Skelton, Jeremy Lates
  * Date: 07.02.2024
  */
 
@@ -14,6 +14,7 @@ import { authGuard } from './shared/auth.guard';
 import { AdminComponent } from './admin/admin.component';
 import { roleGuard } from './shared/role.guard';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -37,6 +38,11 @@ const routes: Routes = [
       {
         path: 'admin',
         component: AdminComponent,
+        title: 'BCRS: Administration',
+      },
+      {
+        path: 'edit/:email',
+        component: EditUserComponent,
         title: 'BCRS: Administration',
       },
     ],

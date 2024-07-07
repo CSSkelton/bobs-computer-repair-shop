@@ -1,1 +1,23 @@
-<nav></nav>
+<nav>
+  <mat-toolbar color="primary" style="background-color: #946b2d; color: black">
+    <mat-toolbar-row>
+      <div class="logo">
+        <img src="" />
+      </div>
+
+      <div style="width: 80%">
+        <div fxLayout="row wrap" fxLayoutAlign="end start">
+          <button style="margin-left: 500px" mat-button routerLink="/">
+            FAQ
+          </button>
+          <button mat-button routerLink="/admin">Administration</button>
+          <button mat-button routerLink="/">Registration</button>
+          <button mat-button routerLink="/">Service Repair</button>
+          <button mat-button routerLink="/">Password Reset</button>
+          <button mat-button routerLink="/">Profile</button>
+          <button mat-button (click)="signOut()">Sign Out</button>
+        </div>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</nav>

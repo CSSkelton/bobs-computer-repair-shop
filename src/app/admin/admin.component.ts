@@ -28,6 +28,8 @@ export interface UserViewModel {
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent {
+  // employeeEmail = 'jeremylates@gmil.com';
+
   // Local variables
   users: User[];
 
