@@ -30,8 +30,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { FormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
-import { CreateEmployeeComponent } from './admin/create-employee/create-employee.component';
-import { UserInterface } from './newuser-interface';
+import { CreateEmployeeComponentComponent } from './admin/create-employee/create-employee.component';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import { UserInterface } from './newuser-interface';
     AdminComponent,
     PagenotfoundComponent,
     EditUserComponent,
-    CreateEmployeeComponent,
+    CreateEmployeeComponentComponent
   ],
   imports: [
     BrowserModule,
