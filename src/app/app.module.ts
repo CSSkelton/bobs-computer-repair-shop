@@ -22,7 +22,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SigninComponent } from './security/signin/signin.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -36,7 +43,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule,
+    HttpClientModule,
+    MatCardModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatListModule,
+    FormsModule,
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
