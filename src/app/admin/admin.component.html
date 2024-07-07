@@ -1,6 +1,15 @@
-<div class="container-fluid pt-2 full-height" style="height: 100vh;">
-
-  <h1 class="text-center" style="margin: 25px auto 25px; padding: 5px; background-color: #946b2d; width: 500px;">Admin</h1>
+<div class="container-fluid pt-2 full-height" style="height: 100vh">
+  <h1
+    class="text-center"
+    style="
+      margin: 25px auto 25px;
+      padding: 5px;
+      background-color: #946b2d;
+      width: 500px;
+    "
+  >
+    Admin
+  </h1>
 
   <div class="admin-table-container col-sm-12">
     <table class="table table-bordered">
@@ -11,6 +20,7 @@
           <th scope="col">Role</th>
         </tr>
       </thead>
+
       <tbody *ngFor="let user of users">
         <tr>
           <td scope="row">
@@ -19,9 +29,9 @@
             </a>
           </td>
           <td scope="row">{{ user.email }}</td>
-          <td scope="row">{{ user.role.join(',') }}</td>
+          <td scope="row">{{ user.role.join(",") }}</td>
           <td>
-            <a routerLink="/admin">
+            <a routerLink="/edit/{{ user.email }}">
               <span class="material-icons">edit</span>
             </a>
           </td>
@@ -34,5 +44,4 @@
       </tbody>
     </table>
   </div>
-
 </div>

@@ -12,7 +12,7 @@ const { ObjectId } = require("mongodb");
 
 const createError = require("http-errors");
 const router = express.Router();
-const Ajv = require('ajv');
+const Ajv = require("ajv");
 const ajv = new Ajv();
 
 /**
@@ -192,7 +192,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-
 /**
  * updateUser
  * @openapi
@@ -236,61 +235,63 @@ router.post("/", async (req, res) => {
  *    - User
  */
 const userSchema = {
-  type: 'object',
+  type: "object",
   additionalProperties: false,
   properties: {
-    email: { type: 'string' },
-    firstName: { type: 'string' },
-    lastName: { type: 'string' },
-    phoneNumber: { type: 'string' },
-    address: { type: 'string' },
-  }
-}
+    email: { type: "string" },
+    firstName: { type: "string" },
+    lastName: { type: "string" },
+    phoneNumber: { type: "string" },
+    address: { type: "string" },
+  },
+};
 router.put("/:userId", (req, res, next) => {
   try {
-
-    mongo(async db => {
-      const user = await db.collection('users').findOne( { 'email': req.params.userId } );
+    mongo(async (db) => {
+      const user = await db
+        .collection("users")
+        .findOne({ email: req.params.userId });
 
       if (!user) {
-        return next(createError(404, `User not found with User ID ${req.params.userId}`));
+        return next(
+          createError(404, `User not found with User ID ${req.params.userId}`)
+        );
       }
 
       const updatedUser = req.body;
 
       // If no specified property, use previous value
       if (updatedUser.email == "string") {
-        updatedUser.email = user.email
+        updatedUser.email = user.email;
       }
       if (updatedUser.firstName == "string") {
-        updatedUser.firstName = user.firstName
+        updatedUser.firstName = user.firstName;
       }
       if (updatedUser.lastName == "string") {
-        updatedUser.lastName = user.lastName
+        updatedUser.lastName = user.lastName;
       }
       if (updatedUser.phoneNumber == "string") {
-        updatedUser.phoneNumber = user.phoneNumber
+        updatedUser.phoneNumber = user.phoneNumber;
       }
       if (updatedUser.address == "string") {
-        updatedUser.address = user.address
+        updatedUser.address = user.address;
       }
 
       console.log(updatedUser);
 
-
       const validator = ajv.compile(userSchema);
-      console.log('got here');
+      console.log("got here");
       const valid = validator(updatedUser);
       if (valid) {
-        console.log('it was def valid');
+        console.log("it was def valid");
       }
 
       if (!valid) {
-        return next(createError(400, 'Invalid task payload', validator.errors));
+        return next(createError(400, "Invalid task payload", validator.errors));
       }
 
-      const result = await db.collection('users').updateOne(
-        { 'email': req.params.userId },
+      const result = await db.collection("users").updateOne(
+        { email: req.params.userId },
         {
           $set: {
             email: updatedUser.email,
@@ -298,14 +299,14 @@ router.put("/:userId", (req, res, next) => {
             lastName: updatedUser.lastName,
             phoneNumber: updatedUser.phoneNumber,
             address: updatedUser.address,
-          }
+          },
         }
-      )
+      );
 
       res.status(204).send(result);
     }, next);
   } catch (err) {
-    console.error('err', err);
+    console.error("err", err);
     next(err);
   }
 });
