@@ -22,7 +22,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./create-employee.component.css']
 })
 
-export class EditUserComponent {
+export class CreateEmployeeComponentComponent {
   email: any;
   url: any;
 
@@ -39,26 +39,66 @@ export interface UserInterface {
 
 };
 
+constructor(private http: HttpClient, private route: ActivatedRoute) {
+  console.log('Calling findById....');
 
+/*
+    this.route.queryParamMap.subscribe((p: any) => {
+      console.log(p['params']);
+    });
+    */
+  }
 
+  onSubmit(form: NgForm) {
+    // Form submission logic
+    console.log(form.value);
+  }
 
-export class CreateEmployeeComponent {
-  errorMessage: string // holds error messages
+  ngOnInit() {
+    this.email = this.route.snapshot.paramMap.get('email');
+    console.log('email: ', this.email);
 
-   //employee form with validation rules for each field
-   employeeForm: FormGroup = this.fb.group({
-    empId: [null, Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])],
-    firstName: [null, Validators.compose([Validators.required])],
-    lastName: [null, Validators.compose([Validators.required])],
-    email: [null, Validators.compose([Validators.required, Validators.email])],
-    // password field requires one uppercase character and one number (min 8 characters)
-    password: [null, Validators.compose([Validators.required, Validators.pattern('^(?=.*[0-9](?=.*[a-z](?=.*[A-Z](?=.*[a-zA-Z].{8,}$')])],
-    role: [null, Validators.compose([Validators.required])]
-})
+    this.url = `/api/users/${this.email}`;
 
-// injects FormBuilder, Router, and EmployeeService
-constructor(private fb: FormBuilder, private router: Router,){
-  this.errorMessage ='' //set error Message to empty string
+    //this.http.get('/api/users/bach@nodebucket.com').subscribe({
+    this.http.get(this.url).subscribe({
+      next: (use: any) => {
+        this.newUser = use;
+        console.log('User: ', this.User);
+      },
+      error: () => {
+        console.error('Unable to get user data');
+      },
+      complete: () => {},
+    });
+  }
+  NewUser() {
+    console.log('New user added....');
 
+    console.log('New User: ', this.User);
 
+    const NewUserDetails = {
+      email: this.User.email,
+      firstName: this.User.firstName,
+      lastName: this.User.lastName,
+      phoneNumber: this.User.phoneNumber,
+      address: this.User.address,
+    };
+
+    console.log('Updated User email: ', newUserDetails.email);
+
+    this.url = `/api/users/${this.email}`;
+
+    this.http.put<any>(this.url, newUserDetails).subscribe({
+      next: (data) => {
+        newUserDetails.email = data.email;
+      },
+      error: (error) => {
+        // this.errorMessage = error.message;
+        console.error('There was an error!', error);
+      },
+    });
+  }
 }
+
+
