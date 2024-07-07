@@ -16,6 +16,8 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
 
+
+
 @Component({
   selector: 'app-create-employee',
   templateUrl: './create-employee.component.html',
@@ -40,6 +42,7 @@ constructor(private http: HttpClient, private route: ActivatedRoute) {
     password: [null, Validators.compose([Validators.required,Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[A-Za-z]).{8,}$')])],
     role: [null, Validators.compose([Validators.required])]
   })
+
 
   console.log('Calling findById....');
 
