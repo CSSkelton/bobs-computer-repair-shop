@@ -1,3 +1,8 @@
+/**
+ * Title: user-interface.ts
+ * Author: Jeremy Lates
+ * Date: 07.07.2024
+ */
 export interface UserInterface {
   email: string;
   password: string;

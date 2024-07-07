@@ -1,7 +1,7 @@
 /**
  * Title: app.module.ts
  * Author: Professor Krasso
- * Editor: Cody Skelton
+ * Editor: Cody Skelton, Jeremy Lates
  * Date: 07.01.2024
  */
 

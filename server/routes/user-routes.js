@@ -1,7 +1,8 @@
 /**
  * Title: user-routes.js
  * Author: Cody Skelton
- * Date: 07.01.2024
+ * Updated by: Jeremy Lates
+ * Date: 07.07.2024
  */
 "use strict";
 

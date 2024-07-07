@@ -1,3 +1,9 @@
+/**
+ * Title: edit-user.component.ts
+ * Author: Jeremy Lates
+ * Date: 07.07.2024
+ */
+
 import { UserInterface } from './../user-interface';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -63,25 +69,28 @@ export class EditUserComponent {
   updateUser() {
     console.log('Update user....');
 
-    /*
-    ///api/users/{userId}:
-    this.url = `/api/users/${this.email}`;
-    //this.http.put('/api/users/bach@nodebucket.com', this.User).subscribe({
-    this.http.put(this.url, this.User).subscribe({
-      //this.http.post(this.url).subscribe({
-      next: (use: any) => {
-        this.User = use;
-        console.log('User: ', this.User);
-      },
-      error: () => {
-        console.error('Unable to get user data');
-      },
-      complete: () => {},
-    });
-    */
+    console.log('Updated User: ', this.User);
 
-    this.http
-      .put<UserInterface>(this.url, this.User)
-      .subscribe((data) => (this.email = data.email));
+    const updatedUserDetails = {
+      email: this.User.email,
+      firstName: this.User.firstName,
+      lastName: this.User.lastName,
+      phoneNumber: this.User.phoneNumber,
+      address: this.User.address,
+    };
+
+    console.log('Updated User email: ', updatedUserDetails.email);
+
+    this.url = `/api/users/${this.email}`;
+
+    this.http.put<any>(this.url, updatedUserDetails).subscribe({
+      next: (data) => {
+        updatedUserDetails.email = data.email;
+      },
+      error: (error) => {
+        // this.errorMessage = error.message;
+        console.error('There was an error!', error);
+      },
+    });
   }
 }
