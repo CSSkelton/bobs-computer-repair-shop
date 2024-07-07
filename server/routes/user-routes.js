@@ -310,4 +310,52 @@ router.put("/:userId", (req, res, next) => {
   }
 });
 
+/**
+ * deleteUser
+ * @openapi
+ * /api/users/{userId}:
+ *  delete:
+ *   summary: delete user from accessible directory
+ *   description: mark user document as inactive
+ *   parameters:
+ *    - name: userId
+ *      in: path
+ *      required: true
+ *      description: User email
+ *      schema:
+ *       type: string
+ *   responses:
+ *    '204':
+ *     description: No content. Operation successful
+ *    '404':
+ *     description: User not found
+ *    '500':
+ *     description: Server exception
+ *    '501':
+ *     description: MongoDB Exception
+ */
+router.delete('/:userId', (req, res, next) => {
+  try {
+    let { userId } = req.params;
+
+    mongo (async db => {
+      let user = await db.collection('users').findOne({ 'email': userId });
+
+      if (!user) {
+        return next(createError(404, `User not found with email ${userId}`));
+      }
+
+      const result = await db.collection('users').updateOne(
+        { 'email': userId },
+        { $set: { isDisabled: true }}
+      )
+
+      res.status(204).send(result);
+    }, next);
+  } catch(err) {
+    console.log('err', err);
+    next(err);
+  }
+});
+
 module.exports = router;
