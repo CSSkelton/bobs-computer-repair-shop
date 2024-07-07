@@ -1,4 +1,8 @@
-
+/**
+ * Title: signin.component.ts
+ * Author: George Taylor
+ * Date: 07.07.2024
+ */
 import { Component,OnInit } from '@angular/core';
 import { MatToolbar } from '@angular/material/toolbar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
