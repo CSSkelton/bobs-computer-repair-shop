@@ -354,6 +354,30 @@ router.put("/:userId", (req, res, next) => {
 
       const updatedUser = req.body;
 
+      // If no specified property, use previous value
+      if (updatedUser.email = "string") {
+        updatedUser.email = user.email
+      }
+      if (updatedUser.firstName = "string") {
+        updatedUser.firstName = user.firstName
+      }
+      if (updatedUser.lastName = "string") {
+        updatedUser.lastName = user.lastName
+      }
+      if (updatedUser.phoneNumber = "string") {
+        updatedUser.phoneNumber = user.phoneNumber
+      }
+      if (updatedUser.address = "string") {
+        updatedUser.address = user.address
+      }
+      // Since we're only editing the above fields with admin page, set other properties to old values
+      updatedUser.password = user.password;
+      updatedUser.isDisabled = false;
+      updatedUser.role = user.role;
+      updatedUser.selectedSecurityQuestions = user.selectedSecurityQuestions;
+      updatedUser.invoices = user.invoices;
+
+
       const validator = ajv.compile(userSchema);
       const valid = validator(updatedUser);
 
@@ -379,7 +403,7 @@ router.put("/:userId", (req, res, next) => {
         }
       )
 
-      res.status(204).send(updatedUser);
+      res.status(204).send(result);
     }, next);
   } catch (err) {
     console.error('err', err);
