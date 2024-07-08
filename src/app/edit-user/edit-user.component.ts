@@ -8,7 +8,7 @@ import { UserInterface } from './../user-interface';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-user',
@@ -33,7 +33,7 @@ export class EditUserComponent {
     whatIsTheModelOfYourFirstCar: 'accord',
   };
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     console.log('Calling findById....');
 
     /*
@@ -92,5 +92,7 @@ export class EditUserComponent {
         console.error('There was an error!', error);
       },
     });
+
+    this.router.navigate(['/admin']);
   }
 }

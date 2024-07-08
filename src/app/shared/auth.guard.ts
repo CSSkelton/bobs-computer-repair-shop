@@ -18,7 +18,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     const router = inject(Router);
     // Include signin page after it's created
     // Clear to '/' if testing pages
-    router.navigate(['/security'], {queryParams: {returnUrl: state.url }})
+    router.navigate(['/security/signin'], {queryParams: {returnUrl: state.url }})
     return false;
   }
 };

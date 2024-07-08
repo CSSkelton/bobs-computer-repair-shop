@@ -12,7 +12,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import{ Router } from'@angular/router';
 
-
+export interface AppUser {
+  fullName: string;
+}
 
 @Component({
   selector: 'app-nav',
@@ -20,7 +22,18 @@ import{ Router } from'@angular/router';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent {
+
+  appUser: AppUser;
+  isSignedIn: boolean;
+
+  constructor(private cookieService: CookieService, private router: Router){
+    this.appUser = {} as AppUser;
+    this.isSignedIn = this.cookieService.get('session_user') ? true:false;
+  }
+
   signOut() {
-    window.location.href = '/#/signin';
+    console.log('Removing user session from the cookie');
+    this.cookieService.deleteAll();
+    window.location.href = '#/security/signin';
   }
 }

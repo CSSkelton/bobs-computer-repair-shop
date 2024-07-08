@@ -29,9 +29,9 @@
             </a>
           </td>
           <td scope="row">{{ user.email }}</td>
-          <td scope="row">{{ user.role.join(",") }}</td>
+          <td scope="row">{{ user.role }}</td>
           <td>
-            <a routerLink="/edit/{{ user.email }}">
+            <a routerLink="/admin/edit/{{ user.email }}">
               <span class="material-icons">edit</span>
             </a>
           </td>

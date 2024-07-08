@@ -3,12 +3,11 @@
  * Author: George Taylor
  * Date: 07.07.2024
  */
-import { Component,OnInit } from '@angular/core';
-import { MatToolbar } from '@angular/material/toolbar';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import{ Router } from'@angular/router';
-
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -19,23 +18,32 @@ import{ Router } from'@angular/router';
 export class SigninComponent {
 
   signinForm: FormGroup = this.fb.group({
-    employId: [null, Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])],
-    password: [null, Validators.compose([Validators.required,])]
+    employeeId: [null, Validators.compose([Validators.required])],
+    passwordId: [null, Validators.compose([Validators.required])]
   });
   errorMessage: String;
 
-  constructor(private router: Router, private cookieService: CookieService, private fb: FormBuilder,) {
+  constructor(private router: Router, private cookieService: CookieService, private fb: FormBuilder, private http: HttpClient) {
     console.log(this.cookieService.get('session_user'));
     this.errorMessage = ''
   }
 
+  onSubmit(){
+    const formValues = this.signinForm.value;
+    const email = formValues.employeeId;
+    const password = formValues.passwordId;
 
-
-
-
-onSubmit(){
-  const formValues = this.signinForm.value;
-  const employId = parseInt(formValues.employId);
-}
+    this.http.post(`/api/security/signin`, {
+      email, password
+    }).subscribe({
+      next: (result: any) => {
+        this.cookieService.set('session_user', result, 1);
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        console.log('error', err)
+      }
+    })
+  }
 
 }

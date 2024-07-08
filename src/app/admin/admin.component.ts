@@ -13,7 +13,7 @@ export interface User {
   firstName: string;
   lastName: string;
   password: string;
-  role: string[];
+  role: string;
 }
 
 export interface UserViewModel {

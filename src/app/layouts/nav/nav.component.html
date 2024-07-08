@@ -6,12 +6,12 @@
       <img src="./assets/Bob's Computer Logo 2.png" height="100" />
     </div>
     <a class="nav-link" routerLink="#">FAQ</a>
-    <a class="nav-link" routerLink="#">Administration </a>
+    <a class="nav-link" routerLink="/admin">Administration </a>
     <a class="nav-link" routerLink="#">Registration</a>
     <a class="nav-link" routerLink="#">Service Repair</a>
     <a class="nav-link" routerLink="#">Password Reset</a>
     <a class="nav-link" routerLink="#">Profile</a>
 
-    <button class="button button2">SignOut</button>
+    <button (click)="signOut()" class="button button2">SignOut</button>
   </div>
 </nav>

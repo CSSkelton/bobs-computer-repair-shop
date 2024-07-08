@@ -13,24 +13,13 @@ export const roleGuard: CanActivateFn = (route, state) => {
 
   console.log('Getting here');
 
-  let sessionUser = {
-    role: "admin"
-  }
-  //let sessionUser = null;
-  //JSON.parse(cookie.get('session_user'))
-  // TODO: replace after signin component
+  let sessionUser = JSON.parse(cookie.get('session_user'));
 
   console.log('sessionUser', sessionUser)
   const router = inject(Router)
 
-
-  if (!sessionUser) {
-    console.log('You must be logged in to view this page')
-    router.navigate(['/security'], { queryParams: { returnUrl: state.url }})
-    return false
-  }
-
-  if (sessionUser['role'] !== 'admin') {
+  if (sessionUser.role !== 'admin') {
+    console.log('You must be an admin to access this page');
     router.navigate(['/security'], { queryParams:  { returnUrl: state.url }})
     return false
   }

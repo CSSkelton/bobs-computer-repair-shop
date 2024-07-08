@@ -22,7 +22,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SigninComponent } from './security/signin/signin.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,6 +32,7 @@ import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { CookieService } from 'ngx-cookie-service';
+import { SecurityComponent } from './security/security.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import { CookieService } from 'ngx-cookie-service';
     FooterComponent,
     AdminComponent,
     SigninComponent,
-    AdminComponent,
+    SecurityComponent,
     PagenotfoundComponent,
     EditUserComponent,
   ],

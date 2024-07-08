@@ -15,6 +15,8 @@ import { AdminComponent } from './admin/admin.component';
 import { roleGuard } from './shared/role.guard';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { SecurityComponent } from './security/security.component';
+import { SigninComponent } from './security/signin/signin.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -22,7 +24,7 @@ const routes: Routes = [
     path: '',
     component: BaseLayoutComponent,
     //  Uncomment after signin page implemented
-    //  canActivate: [ authGuard ],
+    canActivate: [ authGuard ],
     children: [
       {
         path: '',
@@ -34,24 +36,39 @@ const routes: Routes = [
         path: 'home',
         component: HomeComponent,
         title: 'BCRS: Home',
-      },
+      }
+    ],
+  },
+  {
+    path: 'admin',
+    component: BaseLayoutComponent,
+    title: 'BCRS: Admin',
+    children: [
       {
-        path: 'admin',
+        path: '',
         component: AdminComponent,
-        title: 'BCRS: Administration',
+        title: 'BCRS: Admin'
       },
       {
         path: 'edit/:email',
         component: EditUserComponent,
-        title: 'BCRS: Administration',
-      },
+        title: 'BCRS: Administration'
+      }
     ],
+   // canActivate: [roleGuard]
   },
   {
     // path for the security module (e.g. login, register, forgot password, etc.)
     path: 'security',
-    loadChildren: () =>
-      import('./security/security.module').then((m) => m.SecurityModule),
+    component: SecurityComponent,
+    title: 'BCRS: Security',
+    children: [
+      {
+        path: 'signin',
+        component: SigninComponent,
+        title: 'BCRS: Signin'
+      }
+    ]
   },
 
   { path: '**', component: PagenotfoundComponent },
