@@ -20,7 +20,7 @@ export const roleGuard: CanActivateFn = (route, state) => {
 
   if (sessionUser.role !== 'admin') {
     console.log('You must be an admin to access this page');
-    router.navigate(['/security'], { queryParams:  { returnUrl: state.url }})
+    router.navigate(['/'], { queryParams:  { returnUrl: state.url }})
     return false
   }
 

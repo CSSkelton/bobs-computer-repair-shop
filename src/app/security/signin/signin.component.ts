@@ -45,6 +45,7 @@ export class SigninComponent {
         }
 
         this.cookieService.set('session_user', JSON.stringify(sessionCookie), 1);
+        this.cookieService.set('session_admin', sessionCookie.role, 1);
         this.router.navigate(['/']);
       },
       error: (err) => {

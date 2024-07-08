@@ -12,9 +12,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import{ Router } from'@angular/router';
 
-export interface AppUser {
-  fullName: string;
-}
 
 @Component({
   selector: 'app-nav',
@@ -23,12 +20,10 @@ export interface AppUser {
 })
 export class NavComponent {
 
-  appUser: AppUser;
-  isSignedIn: boolean;
+  isAdmin: boolean;
 
   constructor(private cookieService: CookieService, private router: Router){
-    this.appUser = {} as AppUser;
-    this.isSignedIn = this.cookieService.get('session_user') ? true:false;
+    this.isAdmin = this.cookieService.get('session_admin') == 'admin'
   }
 
   signOut() {
