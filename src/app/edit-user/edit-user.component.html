@@ -3,7 +3,7 @@
     <h2>Edit User</h2>
   </div>
 
-  <form #myForm="ngForm" (ngSubmit)="updateUser()">
+  <form #myForm="ngForm" (ngSubmit)="updateUser(myForm)">
     <label for="email">Email:</label>
     <input
       type="email"

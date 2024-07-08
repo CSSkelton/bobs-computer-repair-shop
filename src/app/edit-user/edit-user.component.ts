@@ -19,19 +19,21 @@ export class EditUserComponent {
   email: any;
   url: any;
 
-  User: UserInterface = {
-    email: 'richard.krasso@bcrs.com',
-    password: 'Password1',
-    firstName: 'Richard',
-    lastName: 'Krasso',
-    phoneNumber: '603-555-1212',
-    address: '555 main street',
-    isDisabled: false,
-    role: 'user',
-    whatIsYourFirstPetsName: 'babe',
-    whatIsYourMothersMaidenName: 'lates',
-    whatIsTheModelOfYourFirstCar: 'accord',
-  };
+  User = {} as UserInterface;
+
+  //   = {
+  //   email: 'richard.krasso@bcrs.com',
+  //   password: 'Password1',
+  //   firstName: 'Richard',
+  //   lastName: 'Krasso',
+  //   phoneNumber: '603-555-1212',
+  //   address: '555 main street',
+  //   isDisabled: false,
+  //   role: 'user',
+  //   whatIsYourFirstPetsName: 'babe',
+  //   whatIsYourMothersMaidenName: 'lates',
+  //   whatIsTheModelOfYourFirstCar: 'accord',
+  // };
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     console.log('Calling findById....');
@@ -41,11 +43,6 @@ export class EditUserComponent {
       console.log(p['params']);
     });
     */
-  }
-
-  onSubmit(form: NgForm) {
-    // Form submission logic
-    console.log(form.value);
   }
 
   ngOnInit() {
@@ -66,17 +63,18 @@ export class EditUserComponent {
       complete: () => {},
     });
   }
-  updateUser() {
+
+  updateUser(form: NgForm) {
     console.log('Update user....');
 
     console.log('Updated User: ', this.User);
 
     const updatedUserDetails = {
-      email: this.User.email,
-      firstName: this.User.firstName,
-      lastName: this.User.lastName,
-      phoneNumber: this.User.phoneNumber,
-      address: this.User.address,
+      email: form.value.email,
+      firstName: form.value.firstName,
+      lastName: form.value.lastName,
+      phoneNumber: form.value.phoneNumber,
+      address: form.value.address,
     };
 
     console.log('Updated User email: ', updatedUserDetails.email);

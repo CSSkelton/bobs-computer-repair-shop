@@ -125,9 +125,6 @@ router.get("/:email", (req, res, next) => {
  *               - address
  *               - isDisabled
  *               - role
- *               - whatIsYourFirstPetsName
- *               - whatIsYourMothersMaidenName
- *               - whatIsTheModelOfYourFirstCar
  *             properties:
  *               email:
  *                 type: string
@@ -144,12 +141,6 @@ router.get("/:email", (req, res, next) => {
  *               isDisabled:
  *                 type: boolean
  *               role:
- *                 type: string
- *               whatIsYourFirstPetsName:
- *                 type: string
- *               whatIsYourMothersMaidenName:
- *                 type: string
- *               whatIsTheModelOfYourFirstCar:
  *                 type: string
  *
  *
@@ -174,10 +165,7 @@ router.post("/", async (req, res) => {
       phoneNumber: req.body.phoneNumber,
       address: req.body.address,
       isDisabled: req.body.isDisabled,
-      role: req.body.role,
-      whatIsYourFirstPetsName: req.body.whatIsYourFirstPetsName,
-      whatIsYourMothersMaidenName: req.body.whatIsYourMothersMaidenName,
-      whatIsTheModelOfYourFirstCar: req.body.whatIsTheModelOfYourFirstCar,
+      role: req.body.role
     };
 
     mongo(async (db) => {

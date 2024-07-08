@@ -3,6 +3,8 @@
  * Author: Jeremy Lates
  * Date: 07.07.2024
  */
+import { ISecurityQuestion } from "./security-question-interface";
+
 export interface UserInterface {
   email: string;
   password: string;
@@ -12,7 +14,5 @@ export interface UserInterface {
   address: string;
   isDisabled: boolean;
   role: string;
-  whatIsYourFirstPetsName: string;
-  whatIsYourMothersMaidenName: string;
-  whatIsTheModelOfYourFirstCar: string;
+  securityQuestions: ISecurityQuestion[];
 }
