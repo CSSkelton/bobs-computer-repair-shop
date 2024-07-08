@@ -59,7 +59,20 @@
               </div>
               <!-- end phone number error handling-->
 
-              
+              <div class="mb-3">
+                <label for="txtAddress">Address:</label>
+                <input type="text" id="txtAddress" class="form-control" formControlName="address" required>
+              </div>
+
+              <!--address error handling-->
+              <div *ngIf="employeeForm.controls['address'].touched && employeeForm.controls['address'].hasError('required')">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  Address is required.
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              </div>
+              <!-- end address error handling-->
+
 
               <div *ngIf="employeeForm.controls['password'].touched && employeeForm.controls['password'].hasError('pattern')">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
