@@ -19,27 +19,6 @@
               <legend>Employee Information</legend>
 
               <div class="mb-3">
-                <label for="txtEmpId">Employee ID:</label>
-                <input type="text" id="txtEmpId" class="form-control" formControlName="empId" required>
-              </div>
-
-              <!-- employee Id error handling-->
-               <div *ngIf="employeeForm.controls['empId'].touched && employeeForm.controls['empId'].hasError('required')">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  Employee ID is required.
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-              </div>
-
-              <div *ngIf="employee.Form.controls['empId'].touched && employeeForm.controls['empId'].hasError('pattern')">
-                <div class="'alert alert-danger alert-dismissible fade show" role="alert">
-                  Employee ID must be a number.
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-              </div>
-              <!-- end employeeId error handling-->
-
-              <div class="mb-3">
                 <label for="txtFirstName">First Name:</label>
                 <input type="text" id="txtFirstName" class="form-control" formControlName="firstName" required>
               </div>
@@ -52,6 +31,33 @@
                 </div>
               </div>
               <!-- end first name error handling-->
+              <div class="mb-3">
+                <label for="txtLastName">Last Name:</label>
+                <input type="text" id="txtLastName" class="form-control" formControlName="lastName" required>
+              </div>
+
+              <!--last name error handling-->
+              <div *ngIf="employeeForm.controls['lastName'].touched && employeeForm.controls['lastName'].hasError('required')">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  Last name is required.
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              </div>
+              <!-- end last name error handling-->
+
+              <div class="mb-3">
+                <label for="txtPhoneNumber">Phone Number:</label>
+                <input type="text" id="txtPhoneNumber" class="form-control" formControlName="phoneNumber" required>
+              </div>
+
+              <!--phone number error handling-->
+              <div *ngIf="employeeForm.controls['phoneNumber'].touched && employeeForm.controls['phoneNumber'].hasError('required')">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  Phone number is required.
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              </div>
+              <!-- end phone number error handling-->
 
               <div *ngIf="employeeForm.controls['password'].touched && employeeForm.controls['password'].hasError('pattern')">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
