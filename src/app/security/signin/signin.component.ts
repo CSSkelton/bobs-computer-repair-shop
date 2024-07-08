@@ -36,8 +36,15 @@ export class SigninComponent {
     this.http.post(`/api/security/signin`, {
       email, password
     }).subscribe({
-      next: (result: any) => {
-        this.cookieService.set('session_user', result, 1);
+      next: (user: any) => {
+
+        const sessionCookie = {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          role: user.role
+        }
+
+        this.cookieService.set('session_user', JSON.stringify(sessionCookie), 1);
         this.router.navigate(['/']);
       },
       error: (err) => {

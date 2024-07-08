@@ -2,7 +2,7 @@
  * Title: app-routing.module.ts
  * Author: Professor Krasso
  * Editor: Cody Skelton, Jeremy Lates
- * Date: 07.02.2024
+ * Date: 07.07.2024
  */
 
 // imports statements
@@ -55,7 +55,7 @@ const routes: Routes = [
         title: 'BCRS: Administration'
       }
     ],
-   // canActivate: [roleGuard]
+    canActivate: [roleGuard]
   },
   {
     // path for the security module (e.g. login, register, forgot password, etc.)
