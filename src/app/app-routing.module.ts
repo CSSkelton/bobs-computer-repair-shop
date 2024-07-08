@@ -15,9 +15,16 @@ import { AdminComponent } from './admin/admin.component';
 import { roleGuard } from './shared/role.guard';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { SigninComponent } from './security/signin/signin.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
+  {
+    path:'',
+    component: SigninComponent,
+    canActivate: [authGuard]
+  },
+
   {
     path: '',
     component: BaseLayoutComponent,
