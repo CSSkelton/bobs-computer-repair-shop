@@ -59,6 +59,8 @@
               </div>
               <!-- end phone number error handling-->
 
+              
+
               <div *ngIf="employeeForm.controls['password'].touched && employeeForm.controls['password'].hasError('pattern')">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                   The password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.
