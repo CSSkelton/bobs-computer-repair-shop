@@ -33,6 +33,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { CookieService } from 'ngx-cookie-service';
 import { SecurityComponent } from './security/security.component';
+import { ListEmployeesComponent } from './admin/employee/list-employees/list-employees.component';
+
+import { RouterModule,Routes } from '@angular/router';
+import { CreateEmployeeComponent } from './admin/employee/create-employee/create-employee.component';
+
+const appRoutes: Routes = [
+  { path:'list', component:ListEmployeesComponent},
+  { path: 'create', component:CreateEmployeeComponent},
+  { path: '', redirectTo: '/list', pathMatch: 'full'}
+
+]
+
 
 @NgModule({
   declarations: [
@@ -46,6 +58,8 @@ import { SecurityComponent } from './security/security.component';
     SecurityComponent,
     PagenotfoundComponent,
     EditUserComponent,
+    ListEmployeesComponent,
+    CreateEmployeeComponent,
   ],
   imports: [
     BrowserModule,
