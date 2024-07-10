@@ -16,6 +16,8 @@ const router = express.Router();
 const Ajv = require("ajv");
 const ajv = new Ajv();
 
+const bcrypt = require("bcryptjs");
+
 /**
  * findAll
  * @openapi
@@ -165,7 +167,7 @@ router.post("/", async (req, res) => {
       phoneNumber: req.body.phoneNumber,
       address: req.body.address,
       isDisabled: req.body.isDisabled,
-      role: req.body.role
+      role: req.body.role,
     };
 
     mongo(async (db) => {
@@ -324,27 +326,155 @@ router.put("/:userId", (req, res, next) => {
  *    '501':
  *     description: MongoDB Exception
  */
-router.delete('/:userId', (req, res, next) => {
+router.delete("/:userId", (req, res, next) => {
   try {
     let { userId } = req.params;
 
-    mongo (async db => {
-      let user = await db.collection('users').findOne({ 'email': userId });
+    mongo(async (db) => {
+      let user = await db.collection("users").findOne({ email: userId });
 
       if (!user) {
         return next(createError(404, `User not found with email ${userId}`));
       }
 
-      const result = await db.collection('users').updateOne(
-        { 'email': userId },
-        { $set: { isDisabled: true }}
-      )
+      const result = await db
+        .collection("users")
+        .updateOne({ email: userId }, { $set: { isDisabled: true } });
 
       res.status(204).send(result);
     }, next);
-  } catch(err) {
-    console.log('err', err);
+  } catch (err) {
+    console.log("err", err);
     next(err);
+  }
+});
+
+//Register API
+// /api/users/register
+/**
+ * registerUser
+ * @openapi
+ * /api/users/register:
+ *  post:
+ *   summary: register user details
+ *   description: Updates user document
+ *   requestBody:
+ *    description: User details
+ *    content:
+ *     application/json:
+ *      schema:
+ *       properties:
+ *        email:
+ *         type: string
+ *        firstName:
+ *         type: string
+ *        lastName:
+ *         type: string
+ *        password:
+ *         type: string
+ *        phoneNumber:
+ *         type: string
+ *        address:
+ *         type: string
+ *        whatIsYourFirstPetsName:
+ *          type: string
+ *        whatIsYourMothersMaidenName:
+ *          type: string
+ *        whatIsTheModelOfYourFirstCar:
+ *          type: string
+ *   responses:
+ *    '200':
+ *     description: user registered
+ *    '400':
+ *     description: Bad Request
+ *    '404':
+ *     description: User already in database
+ *    '500':
+ *     description: Internal Server Error
+ *   tags:
+ *    - User
+ */
+router.post("/register", (req, res, next) => {
+  console.log("register user api....");
+  const saltRounds = 10;
+
+  const registerSchema = {
+    type: "object", //Needed to remove this line to get it to work. Not sure why.. I thought we needed it.
+    additionalProperties: false,
+    properties: {
+      email: { type: "string" },
+      password: { type: "string" },
+      firstName: { type: "string" },
+      lastName: { type: "string" },
+      phoneNumber: { type: "string" },
+      address: { type: "string" },
+      isDisabled: { type: "boolean" },
+      role: { type: "string" },
+      whatIsYourFirstPetsName: { type: "string" },
+      whatIsYourMothersMaidenName: { type: "string" },
+      whatIsTheModelOfYourFirstCar: { type: "string" },
+    },
+    required: ["email", "firstName", "lastName", "password"],
+  };
+
+  try {
+    let email = req.body.email;
+    console.log("req body email: ", req.body.email);
+    console.log("email: ", email);
+
+    const newUser = {
+      email: req.body.email,
+      password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      phoneNumber: req.body.phoneNumber,
+      address: req.body.address,
+      isDisabled: false,
+      role: "user",
+      whatIsYourFirstPetsName: req.body.whatIsYourFirstPetsName,
+      whatIsYourMothersMaidenName: req.body.whatIsYourMothersMaidenName,
+      whatIsTheModelOfYourFirstCar: req.body.whatIsTheModelOfYourFirstCar,
+    };
+
+    console.log("New User: ", newUser);
+
+    //validate the newUser object using ajv
+    const validate = ajv.compile(registerSchema);
+    const valid = validate(newUser);
+
+    //If the user object is not valid return a 400 error to the client
+    if (!valid) {
+      const err = new Error("Bad request");
+      err.stats = 400;
+      err.errors = validate.errors;
+      console.log("User validation errors ", validate.errors);
+      next(err); //return the error to the client
+      return; //exit from function
+    }
+
+    //Hash password
+    newUser.password = bcrypt.hashSync(newUser.password, saltRounds);
+    console.log("User Hashed Password: ", newUser.password);
+
+    //Call MongoDB
+    //Database query is handled
+    mongo(async (db) => {
+      const user = await db.collection("users").findOne({ email });
+
+      if (user) {
+        console.error("User email found in database:", email);
+        return next(createError(404, "User found in database"));
+      }
+
+      //This means email was not found. Add user to the database
+      const result = await db.collection("users").insertOne(newUser);
+      console.log("User inserted into the database: ", newUser);
+      res.send({ email: newUser.email });
+    }, next);
+  } catch (err) {
+    console.log(err);
+    console.log(`API Error: ${err.message}`);
+    next(err); //return error to user
   }
 });
 
