@@ -33,6 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { CookieService } from 'ngx-cookie-service';
 import { SecurityComponent } from './security/security.component';
+import { FaqComponent } from './faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SecurityComponent } from './security/security.component';
     SecurityComponent,
     PagenotfoundComponent,
     EditUserComponent,
+    FaqComponent,
   ],
   imports: [
     BrowserModule,
