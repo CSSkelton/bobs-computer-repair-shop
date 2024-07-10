@@ -1,19 +1,21 @@
 /**
- * Title: home.component.ts
+ * Title: create-employee.component.ts
  * Author: Professor Krasso
  * Editor: George Taylor
- * Date: 07.07.2024
+ * Date: 07.09.2024
  */
 
 
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Employee } from 'src/app/employee';
 
 import { UserInterface } from 'src/app/user-interface';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { CreateEmployeeComponent } from '../Employee/create-employee/create-employee.component';
 
 
 
@@ -24,9 +26,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./create-employee.component.css']
 })
 
-export class CreateEmployeeComponentComponent {
-  email: any;
-  url: any;
+export class CreateEmployeeComponent{
+  
+}
 
 NewUserdetails : UserInterface
 

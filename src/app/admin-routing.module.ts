@@ -9,13 +9,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin/admin.component';
 import { roleGuard } from './shared/role.guard';
-
+import { CreateEmployeeComponent } from './admin/Employee/create-employee/create-employee.component';
 
 const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    children: [],
+    children: [
+      {path: 'create',
+      component: CreateEmployeeComponent,
+      }
+    ],
     canActivate: [roleGuard]
   }
 ]

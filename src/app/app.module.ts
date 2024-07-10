@@ -31,6 +31,9 @@ import { FormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 import { CreateEmployeeComponentComponent } from './admin/create-employee/create-employee.component';
+import { CreateEmployeeComponent } from './admin/Employee/create-employee/create-employee.component';
+import { ListEmployeesComponent } from './admin/Employee/list-employees/list-employees.component';
+import { EmployeeserviceComponent } from './admin/Employee/employeeservice/employeeservice.component';
 
 
 @NgModule({
@@ -43,7 +46,10 @@ import { CreateEmployeeComponentComponent } from './admin/create-employee/create
     AdminComponent,
     PagenotfoundComponent,
     EditUserComponent,
-    CreateEmployeeComponentComponent
+    CreateEmployeeComponentComponent,
+    CreateEmployeeComponent,
+    ListEmployeesComponent,
+    EmployeeserviceComponent
   ],
   imports: [
     BrowserModule,
