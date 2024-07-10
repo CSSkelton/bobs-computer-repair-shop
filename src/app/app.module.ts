@@ -25,14 +25,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
-import { CookieService } from 'ngx-cookie-service';
-import { SecurityComponent } from './security/security.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +38,10 @@ import { SecurityComponent } from './security/security.component';
     SecurityComponent,
     PagenotfoundComponent,
     EditUserComponent,
+    CreateEmployeeComponentComponent,
+    CreateEmployeeComponent,
+    ListEmployeesComponent,
+    EmployeeserviceComponent
   ],
   imports: [
     BrowserModule,
