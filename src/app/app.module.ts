@@ -33,6 +33,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+<<<<<<< HEAD
+import { CookieService } from 'ngx-cookie-service';
+import { SecurityComponent } from './security/security.component';
+import { FaqComponent } from './faq/faq.component';
+=======
+>>>>>>> main
 
 @NgModule({
   declarations: [
@@ -46,7 +52,11 @@ import { MatSelectModule } from '@angular/material/select';
     SecurityComponent,
     PagenotfoundComponent,
     EditUserComponent,
+<<<<<<< HEAD
+    FaqComponent,
+=======
     CreateEmployeeComponent
+>>>>>>> main
   ],
   imports: [
     BrowserModule,
