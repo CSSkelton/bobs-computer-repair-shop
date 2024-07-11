@@ -1,0 +1,82 @@
+<div class="container-fluid pt-2">
+  <h1 class="text-center">Create a New User</h1>
+
+  <div class="row justify-content-center pt-4">
+    <div class="col-sm-10 col-md-8 col-lg-6">
+
+      <div *ngIf="errorMessage">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ errorMessage}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+
+
+
+      <div class="card">
+        <div class="card-body">
+          <div [formGroup]="employeeForm" (ngSubmit)="createEmployee();">
+
+            <div class="form-group">
+              <legend>Employee Information</legend>
+
+              <div class="mb-3">
+                <label for="txtFirstName">First Name:</label>
+                <input type="text" id="txtFirstName" class="form-control" formControlName="firstName" required>
+              </div>
+
+              <!--first name error handling-->
+              <div *ngIf="employeeForm.controls['firstName'].touched && employeeForm.controls['firstName'].hasError('required')">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  First name is required.
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              </div>
+              <!-- end first name error handling-->
+              <div class="mb-3">
+                <label for="lastName">Last Name:</label>
+                <input id="lastname" name="lastName" type="text" class="form-control" formControlName="lastName" required>
+              </div>
+
+              <!--last name error handling-->
+              <div *ngIf="employeeForm.controls['lastName'].touched && employeeForm.controls['lastName'].hasError('required')">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  Last name is required.
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              </div>
+              <!-- end last name error handling-->
+
+              <div class="mb-3">
+                <label for="txtEmail">Email:</label>
+                <input type="text" id="txtEmail" class="form-control" formControlName="email" required>
+              </div>
+
+              <!-- email error handling-->
+               <div *ngIf="employeeForm.control['email'].touched && employeeForm.controls['email'].hasError('required')">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  Email is required.
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+               </div>"
+               <!-- // end email error handling -->
+
+               <div class="mb-3">
+                <label for="txtPassword">Password:</label>
+                <input type="password" id="txtPassword" class="form-control" formControlName="password" required>
+               </div>
+
+               <!-- password error handling -->
+                <div *ngIf="employeeForm.controls['password'].touched && employeeForm.controls['password'].hasError('required')">
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Password is required.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                </div>
+                <!-- end of password handling -->
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -17,6 +17,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { SecurityComponent } from './security/security.component';
 import { SigninComponent } from './security/signin/signin.component';
+import { CreateEmployeeComponent } from './admin/Employee/create-employee/create-employee.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -48,6 +49,11 @@ const routes: Routes = [
         path: '',
         component: AdminComponent,
         title: 'BCRS: Admin'
+      },
+      {
+        path: 'create-employee',
+        component: CreateEmployeeComponent,
+        title: 'BCRS: Administration',
       },
       {
         path: 'edit/:email',
