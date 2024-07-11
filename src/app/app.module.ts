@@ -37,6 +37,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { CookieService } from 'ngx-cookie-service';
 import { SecurityComponent } from './security/security.component';
 import { FaqComponent } from './faq/faq.component';
+import { UserConfigurationComponent } from './faq/admin/user-configuration/user-configuration.component';
 =======
 >>>>>>> main
 
@@ -54,6 +55,7 @@ import { FaqComponent } from './faq/faq.component';
     EditUserComponent,
 <<<<<<< HEAD
     FaqComponent,
+UserConfigurationComponent,
 =======
     CreateEmployeeComponent
 >>>>>>> main

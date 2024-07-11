@@ -6,7 +6,7 @@
  */
 
 // imports statements
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { HomeComponent } from './home/home.component';
@@ -18,6 +18,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { SecurityComponent } from './security/security.component';
 import { SigninComponent } from './security/signin/signin.component';
 import { CreateEmployeeComponent } from './admin/Employee/create-employee/create-employee.component';
+import { FaqComponent } from './faq/faq.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -59,6 +60,12 @@ const routes: Routes = [
         path: 'edit/:email',
         component: EditUserComponent,
         title: 'BCRS: Administration'
+      },
+
+      {
+        path: '',
+        component:FaqComponent,
+        title:'BCRS: FAQ'
       }
     ],
     canActivate: [roleGuard]
