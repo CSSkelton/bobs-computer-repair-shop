@@ -61,9 +61,8 @@ const routes: Routes = [
         component: EditUserComponent,
         title: 'BCRS: Administration'
       },
-
       {
-        path: '',
+        path: 'faq',
         component:FaqComponent,
         title:'BCRS: FAQ'
       }
