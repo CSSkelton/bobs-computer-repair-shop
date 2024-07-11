@@ -166,25 +166,17 @@ router.post('/verify/users/:email', (req, res, next) => {
  *     application/json:
  *      schema:
  *       required:
- *        - secQuestion1
- *        - secQuestion2
- *        - secQuestion3
- *        - secAnswer1
- *        - secAnswer2
- *        - secAnswer3
+ *        - securityQuestions
  *       properties:
- *        secQuestion1:
- *         type: string
- *        secQuestion2:
- *         type: string
- *        secQuestion3:
- *         type: string
- *        secAnswer1:
- *         type: string
- *        secAnswer2:
- *         type: string
- *        secAnswer3:
- *         type: string
+ *        securityQuestions:
+ *         type: array
+ *         items:
+ *          type: object
+ *          properties:
+ *           question:
+ *            type: string
+ *           answer:
+ *            type: string
  *   responses:
  *    '200':
  *     description: OK
@@ -195,6 +187,79 @@ router.post('/verify/users/:email', (req, res, next) => {
  *    '500':
  *     description: Internal Server Error
  */
+
+const securityQuestionsSchema = {
+  type: 'object',
+  required: [ 'securityQuestions' ],
+  additionalProperties: false,
+  properties: {
+    securityQuestions: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          question: { type: 'string' },
+          answer: { type: 'string' }
+        },
+        required: [ 'question', 'answer' ],
+        additionalProperties: false
+      }
+    }
+  }
+}
+router.post('/verify/users/:email/security-questions', (req, res, next) => {
+  try {
+
+    const email = req.params.email
+    const { securityQuestions } = req.body
+
+    console.log('email', email)
+    console.log('security questions', securityQuestions)
+
+    const validate = ajv.compile(securityQuestionsSchema)
+    const valid = validate(securityQuestions)
+
+    if (!valid) {
+      const err = new Error('Bad Request')
+      err.status = 400
+      err.errors = validate.errors
+      console.log('securityQuestions validation errors', validate.errors)
+      next(err)
+      return
+    }
+
+    mongo(async db => {
+      const user = await db.collection('users').findOne({ email: email })
+
+      if (!user) {
+        const err = new Error('No user found' + email)
+        err.status = 404
+        console.log('User not found', err)
+        next(err)
+        return
+      }
+
+      console.log('User', user)
+
+      if (securityQuestions[0].answer !== user.selectedSecurityQuestions[0].answer ||
+        securityQuestions[1].answer !== user.selectedSecurityQuestions[1].answer ||
+        securityQuestions[2].answer !== user.selectedSecurityQuestions[2].answer) {
+
+        const err = new Error('Unauthorized')
+        err.status = 401
+        err.message = 'Unauthorized: Security questions do not match'
+        console.log('Security questions do not match', err)
+        next(err)
+        return
+      }
+
+      res.send(user)
+    }, next)
+  } catch (err) {
+    console.log(`API Error ${err.message}`)
+    next(err)
+  }
+})
 
 /**
  * resetPassword
