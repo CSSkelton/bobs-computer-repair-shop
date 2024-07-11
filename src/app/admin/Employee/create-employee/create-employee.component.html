@@ -53,29 +53,27 @@
               </div>
 
               <!-- email error handling-->
-               <div *ngIf="employeeForm.control['email'].touched && employeeForm.controls['email'].hasError('required')">
+              <div *ngIf="employeeForm.controls['email'].touched && employeeForm.controls['email'].hasError('required')">
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Email is required.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              </div>
+              <!-- // end email error handling -->
+
+              <div class="mb-3">
+              <label for="txtPassword">Password:</label>
+              <input type="password" id="txtPassword" class="form-control" formControlName="password" required>
+              </div>
+
+              <!-- password error handling -->
+              <div *ngIf="employeeForm.controls['password'].touched && employeeForm.controls['password'].hasError('required')">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  Email is required.
+                  Password is required.
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-               </div>"
-               <!-- // end email error handling -->
-
-               <div class="mb-3">
-                <label for="txtPassword">Password:</label>
-                <input type="password" id="txtPassword" class="form-control" formControlName="password" required>
-               </div>
-
-               <!-- password error handling -->
-                <div *ngIf="employeeForm.controls['password'].touched && employeeForm.controls['password'].hasError('required')">
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Password is required.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>
-                </div>
-                <!-- end of password handling -->
-              </fieldset>
-            </form>
+              </div>
+              <!-- end of password handling -->
           </div>
         </div>
       </div>

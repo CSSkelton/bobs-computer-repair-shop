@@ -350,7 +350,6 @@ router.delete("/:userId", (req, res, next) => {
 });
 
 //Register API
-// /api/users/register
 /**
  * registerUser
  * @openapi
