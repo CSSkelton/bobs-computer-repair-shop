@@ -25,6 +25,7 @@ const routes: Routes = [
   {
     path: '',
     component: BaseLayoutComponent,
+
     //  Uncomment after signin page implemented
     canActivate: [ authGuard ],
     children: [
@@ -34,11 +35,17 @@ const routes: Routes = [
         //component: BaseLayoutComponent,
         title: 'BCRS: Home', // title for the home page
       },
+
       {
         path: 'home',
         component: HomeComponent,
         title: 'BCRS: Home',
-      }
+      },
+      {
+        path: 'faq',
+        component: FaqComponent,
+        title: 'BCRS: Faq',
+      },
     ],
   },
   {
@@ -61,11 +68,7 @@ const routes: Routes = [
         component: EditUserComponent,
         title: 'BCRS: Administration'
       },
-      {
-        path: 'faq',
-        component:FaqComponent,
-        title:'BCRS: FAQ'
-      }
+
     ],
     canActivate: [roleGuard]
   },
@@ -81,6 +84,7 @@ const routes: Routes = [
         title: 'BCRS: Signin'
       }
     ]
+
   },
 
   { path: '**', component: PagenotfoundComponent },
