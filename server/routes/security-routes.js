@@ -100,7 +100,7 @@ router.post('/signin', (req, res, next) => {
  *   description: retrieves user document based off of provided email
  *   summary: retrieve user by email
  *   tags:
- *    - Security
+ *    - Password Reset
  *   parameters:
  *    - name: email
  *      in: path
@@ -149,10 +149,10 @@ router.post('/verify/users/:email', (req, res, next) => {
  * @openapi
  * /api/security/verify/users/{email}/security-questions:
  *  post:
+ *   tags:
+ *    - Password Reset
  *   description: check user security question answers vs what's stored in database
  *   summary: check security question answers
- *   tags:
- *    - Security
  *   parameters:
  *    - name: email
  *      in: path
@@ -201,6 +201,8 @@ router.post('/verify/users/:email', (req, res, next) => {
  * @openapi
  * /api/security/users/{email}/reset-password:
  *  post:
+ *   tags:
+ *    - Password Reset
  *   description: Reset user password if security question answers correct
  *   summary: Reset user password
  *   parameters:

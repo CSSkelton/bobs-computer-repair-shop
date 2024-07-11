@@ -481,7 +481,9 @@ router.post("/register", (req, res, next) => {
  * findSelectedSecurityQuestions
  * @openapi
  * /api/users/{email}/security-questions:
- *  post:
+ *  get:
+ *   tags:
+ *    - Password Reset
  *   description: Retrieve user's selected security questions
  *   summary: Retrieve security questions
  *   parameters:
@@ -501,5 +503,35 @@ router.post("/register", (req, res, next) => {
  *    '500':
  *     description: Internal Server Error
  */
+router.get('/:email/security-questions', (req, res, next) => {
+  try {
+    const email = req.params.email
+
+    console.log('email', email)
+
+    mongo(async db => {
+
+      const user = await db.collection('users').findOne(
+        { email: email },
+        { projection: { _id: 0, email: 1, selectedSecurityQuestions: 1 } },
+      )
+
+      console.log('Selected security questions', user)
+
+      if (!user) {
+        const err = new Error('Unable to find user' + email)
+        err.status = 404
+        console.log('err', err)
+        next(err)
+        return
+      }
+
+      res.send(user)
+    }, next)
+  } catch (err) {
+    console.log('err', err)
+    next(err)
+  }
+})
 
 module.exports = router;
