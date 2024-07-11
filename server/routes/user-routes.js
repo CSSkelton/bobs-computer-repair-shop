@@ -477,4 +477,29 @@ router.post("/register", (req, res, next) => {
   }
 });
 
+/**
+ * findSelectedSecurityQuestions
+ * @openapi
+ * /api/users/{email}/security-questions:
+ *  post:
+ *   description: Retrieve user's selected security questions
+ *   summary: Retrieve security questions
+ *   parameters:
+ *    - name: email
+ *      in: path
+ *      required: true
+ *      description: Users document email
+ *      schema:
+ *       type: string
+ *   responses:
+ *    '200':
+ *     description: OK
+ *    '400':
+ *     description: Bad Request
+ *    '404':
+ *     description: Not Found
+ *    '500':
+ *     description: Internal Server Error
+ */
+
 module.exports = router;

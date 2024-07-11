@@ -92,4 +92,118 @@ router.post('/signin', (req, res, next) => {
   }
 })
 
+/**
+ * verifyUser
+ * @openapi
+ * /api/security/verify/users/{email}:
+ *  post:
+ *   description: retrieves user document based off of provided email
+ *   summary: retrieve user by email
+ *   tags:
+ *    - Security
+ *   parameters:
+ *    - name: email
+ *      in: path
+ *      required: true
+ *      description: User Email
+ *      schema:
+ *       type: string
+ *   responses:
+ *    '200':
+ *     description: OK
+ *    '400':
+ *     description: Bad Request
+ *    '404':
+ *     description: Not Found
+ *    '500':
+ *     description: Internal Server Error
+ */
+
+/**
+ * verifySecurityQuestions
+ * @openapi
+ * /api/security/verify/users/{email}/security-questions:
+ *  post:
+ *   description: check user security question answers vs what's stored in database
+ *   summary: check security question answers
+ *   tags:
+ *    - Security
+ *   parameters:
+ *    - name: email
+ *      in: path
+ *      required: true
+ *      description: User Email
+ *      schema:
+ *       type: string
+ *   requestBody:
+ *    description: User answers
+ *    content:
+ *     application/json:
+ *      schema:
+ *       required:
+ *        - secQuestion1
+ *        - secQuestion2
+ *        - secQuestion3
+ *        - secAnswer1
+ *        - secAnswer2
+ *        - secAnswer3
+ *       properties:
+ *        secQuestion1:
+ *         type: string
+ *        secQuestion2:
+ *         type: string
+ *        secQuestion3:
+ *         type: string
+ *        secAnswer1:
+ *         type: string
+ *        secAnswer2:
+ *         type: string
+ *        secAnswer3:
+ *         type: string
+ *   responses:
+ *    '200':
+ *     description: OK
+ *    '400':
+ *     description: Bad Request
+ *    '404':
+ *     description: Not Found
+ *    '500':
+ *     description: Internal Server Error
+ */
+
+/**
+ * resetPassword
+ * @openapi
+ * /api/security/users/{email}/reset-password:
+ *  post:
+ *   description: Reset user password if security question answers correct
+ *   summary: Reset user password
+ *   parameters:
+ *    - name: email
+ *      in: path
+ *      required: true
+ *      description: User Email
+ *      schema:
+ *       type: string
+ *   requestBody:
+ *    description: New user password
+ *    content:
+ *     application/json:
+ *      schema:
+ *       required:
+ *        - password
+ *       properties:
+ *        password:
+ *         type: string
+ *   responses:
+ *    '200':
+ *     description: OK
+ *    '400':
+ *     description: Bad Request
+ *    '404':
+ *     description: Not Found
+ *    '500':
+ *     description: Internal Server Error
+ */
+
 module.exports = router;
