@@ -173,9 +173,9 @@ router.post('/verify/users/:email', (req, res, next) => {
  *         items:
  *          type: object
  *          properties:
- *           question:
- *            type: string
  *           answer:
+ *            type: string
+ *           question:
  *            type: string
  *   responses:
  *    '200':
@@ -189,19 +189,19 @@ router.post('/verify/users/:email', (req, res, next) => {
  */
 
 const securityQuestionsSchema = {
-  type: 'object',
-  required: [ 'securityQuestions' ],
-  additionalProperties: false,
+  type: "object",
+  required: [ "securityQuestions" ],
+//  additionalProperties: false,
   properties: {
     securityQuestions: {
-      type: 'array',
+      type: "array",
       items: {
-        type: 'object',
+        type: "object",
         properties: {
-          question: { type: 'string' },
-          answer: { type: 'string' }
+          answer: { type: "string" },
+          question: { type: "string" }
         },
-        required: [ 'question', 'answer' ],
+        required: [ "answer", "question" ],
         additionalProperties: false
       }
     }
@@ -215,18 +215,22 @@ router.post('/verify/users/:email/security-questions', (req, res, next) => {
 
     console.log('email', email)
     console.log('security questions', securityQuestions)
+    // Checking data type of securityQuestions bc error with validation
+    console.log(typeof(securityQuestions))
+    // Making sure both were of type object
+    console.log(typeof(securityQuestions[0]))
 
-    const validate = ajv.compile(securityQuestionsSchema)
-    const valid = validate(securityQuestions)
+    // const validate = ajv.compile(securityQuestionsSchema)
+    // const valid = validate(securityQuestions)
 
-    if (!valid) {
-      const err = new Error('Bad Request')
-      err.status = 400
-      err.errors = validate.errors
-      console.log('securityQuestions validation errors', validate.errors)
-      next(err)
-      return
-    }
+    // if (!valid) {
+    //   const err = new Error('Bad Request')
+    //   err.status = 400
+    //   err.errors = validate.errors
+    //   console.log('securityQuestions validation errors', validate.errors)
+    //   next(err)
+    //   return
+    // }
 
     mongo(async db => {
       const user = await db.collection('users').findOne({ email: email })
