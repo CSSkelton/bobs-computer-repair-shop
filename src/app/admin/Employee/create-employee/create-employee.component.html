@@ -66,14 +66,16 @@
               <input type="password" id="txtPassword" class="form-control" formControlName="password" required>
               </div>
 
-              <!-- password error handling -->
-              <div *ngIf="employeeForm.controls['password'].touched && employeeForm.controls['password'].hasError('required')">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  Password is required.
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+               <!-- password error handling -->
+                <div *ngIf="employeeForm.controls['password'].touched && employeeForm.controls['password'].hasError('required')">
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Password is required.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
                 </div>
-              </div>
-              <!-- end of password handling -->
+                <!-- end of password handling -->
+              </fieldset>
+            </form>
           </div>
         </div>
       </div>
