@@ -52,7 +52,6 @@
                 <input type="text" id="txtEmail" class="form-control" formControlName="email" required>
               </div>
 
-
               <!-- email error handling-->
                <div *ngIf="employeeForm.control['email'].touched && employeeForm.controls['email'].hasError('required')">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
