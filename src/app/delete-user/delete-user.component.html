@@ -1,1 +1,12 @@
-<p>delete-user works!</p>
+<div class="container">
+  <h3 mat-dialog-title>Employee Removal</h3>
+
+  <div mat-dialog-content>
+    <p> Please confirm that you are wanting to remove employee from the system?</P>
+  </div>
+
+  <div mat-dialog-actions [align]="selectedAlign" name="end">
+    <button class = "keep" mat-raised-button matDialogClose = "cancel">Keep {{employee}}</button>
+    <button class = "delete" mat-raised-button matDialogClose = "cancel">Delete {{employee}}</button>
+  </div>
+</div>
