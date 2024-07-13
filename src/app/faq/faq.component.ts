@@ -1,5 +1,9 @@
 /**
- * 
+ * Title: faq.component.ts
+ * Author: Professor Krasso
+ * Editor: George Taylor
+ * Date: 07.13.2024
+ * Description: FAQ Page
  */
 
 
