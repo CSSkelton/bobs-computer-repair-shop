@@ -59,6 +59,11 @@ const routes: Routes = [
         path: 'edit/:email',
         component: EditUserComponent,
         title: 'BCRS: Administration'
+      },
+      {
+        path: 'delete',
+        component: DeleteUserComponent,
+        title: 'BCRS: Administration'
       }
     ],
     canActivate: [roleGuard]
