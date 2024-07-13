@@ -51,6 +51,7 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
     EditUserComponent,
     FaqComponent,
     CreateEmployeeComponent,
+    DeleteUserComponent
 
   ],
   imports: [
