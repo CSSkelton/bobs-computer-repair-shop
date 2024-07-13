@@ -1,3 +1,12 @@
+/**
+ * Title:create-user.component.ts
+ * Author: Professor Krasso
+ * Editor: George Taylor
+ * Date: 07.07.2024
+ * Description: Create users to be added to the system
+ */
+
+
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
