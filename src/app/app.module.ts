@@ -35,6 +35,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { CookieService } from 'ngx-cookie-service';
 import { FaqComponent } from './faq/faq.component';
+import { DeleteUserComponent } from './delete-user/delete-user.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { FaqComponent } from './faq/faq.component';
     EditUserComponent,
     FaqComponent,
     CreateEmployeeComponent,
+    DeleteUserComponent,
 
 
   ],
