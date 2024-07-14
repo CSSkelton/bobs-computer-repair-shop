@@ -3,7 +3,7 @@
  * Author: Jeremy Lates
  * Date: 07.07.2024
  */
-import { ISecurityQuestion } from "./security-question-interface";
+import { ISecurityQuestion } from './security-question-interface';
 
 export interface UserInterface {
   email: string;

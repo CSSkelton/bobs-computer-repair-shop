@@ -5,15 +5,22 @@
  * Date: 07.07.2024 -->
 
 <nav>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
 
   <div class="navbar">
     <div class="logo">
-      <img routerLink="/" src="./assets/Bob's Computer Logo 2.png" height="100" />
+      <img
+        routerLink="/"
+        src="./assets/Bob's Computer Logo 2.png"
+        height="100"
+      />
     </div>
     <a class="nav-link" routerLink="/admin" *ngIf="isAdmin">Administration </a>
     <a class="nav-link" routerLink="/">FAQ</a>
-    <a class="nav-link" routerLink="/">Registration</a>
+    <a class="nav-link" routerLink="/register">Registration</a>
     <a class="nav-link" routerLink="/">Service Repair</a>
     <a class="nav-link" routerLink="/">Password Reset</a>
     <a class="nav-link" routerLink="/">Profile</a>

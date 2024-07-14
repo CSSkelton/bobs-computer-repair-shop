@@ -1,0 +1,233 @@
+<div class="container">
+  <div class="banner">
+    <div><h2>Bob's Computer</h2></div>
+    <div><h2>Registration Form</h2></div>
+  </div>
+
+  <form [formGroup]="formGroup" (ngSubmit)="registerUser()">
+    <br />
+    <fieldset>
+      <legend>Login Questions</legend>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter email address"
+        class="form-control"
+        formControlName="email"
+        required
+      />
+
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          formGroup.controls['email'].invalid &&
+          formGroup.controls['email'].touched
+        "
+      >
+        <div *ngIf="formGroup.controls['email'].hasError('required')">
+          Email Required!
+        </div>
+      </div>
+
+      <br />
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter password"
+        class="form-control"
+        formControlName="password"
+      />
+
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          formGroup.controls['password'].invalid &&
+          formGroup.controls['password'].touched
+        "
+      >
+        <div *ngIf="formGroup.controls['password'].hasError('required')">
+          Password Required!
+        </div>
+      </div>
+    </fieldset>
+
+    <br />
+    <fieldset>
+      <legend>Profile Questions</legend>
+      <input
+        type="text"
+        id="firstName"
+        name="firstName"
+        placeholder="First Name"
+        class="form-control"
+        formControlName="firstName"
+        required
+      />
+
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          formGroup.controls['firstName'].invalid &&
+          formGroup.controls['firstName'].touched
+        "
+      >
+        <div *ngIf="formGroup.controls['firstName'].hasError('required')">
+          First Name Required!
+        </div>
+      </div>
+      <br />
+      <input
+        type="text"
+        id="lastName"
+        name="lastName"
+        placeholder="Last Name"
+        class="form-control"
+        formControlName="lastName"
+      />
+
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          formGroup.controls['lastName'].invalid &&
+          formGroup.controls['lastName'].touched
+        "
+      >
+        <div *ngIf="formGroup.controls['lastName'].hasError('required')">
+          Last Name Required!
+        </div>
+      </div>
+
+      <br />
+      <input
+        type="text"
+        id="phoneNumber"
+        name="phoneNumber"
+        placeholder="Phone Number"
+        class="form-control"
+        formControlName="phoneNumber"
+      />
+
+      <br />
+      <input
+        type="text"
+        id="address"
+        name="address"
+        placeholder="Address"
+        class="form-control"
+        formControlName="address"
+      />
+      <br />
+    </fieldset>
+    <fieldset>
+      <legend>Security Questions</legend>
+
+      <br />
+
+      <label>Question 1:</label>
+      <select
+        name="q1"
+        id="q1"
+        class="form-select"
+        formControlName="question1"
+        (ngModelChange)="onChange1($event)"
+      >
+        <option *ngFor="let question1 of qArr1" [value]="question1">
+          {{ question1 }}
+        </option>
+      </select>
+
+      <input
+        type="text"
+        id="a1"
+        name="a1"
+        placeholder="Enter answer to question 1"
+        class="form-control"
+        formControlName="answer1"
+      />
+
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          formGroup.controls['answer1'].invalid &&
+          formGroup.controls['answer1'].touched
+        "
+      >
+        <div *ngIf="formGroup.controls['answer1'].hasError('required')">
+          Question Required!
+        </div>
+      </div>
+
+      <label>Question 2:</label>
+      <select
+        name="q2"
+        id="q2"
+        class="form-select"
+        formControlName="question2"
+        (ngModelChange)="onChange2($event)"
+      >
+        <option *ngFor="let question2 of qArr2" [value]="question2">
+          {{ question2 }}
+        </option>
+      </select>
+
+      <input
+        type="text"
+        id="a2"
+        name="a2"
+        placeholder="Enter answer to question 2"
+        class="form-control"
+        formControlName="answer2"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          formGroup.controls['answer2'].invalid &&
+          formGroup.controls['answer2'].touched
+        "
+      >
+        <div *ngIf="formGroup.controls['answer2'].hasError('required')">
+          Question Required!
+        </div>
+      </div>
+
+      <label>Question 3:</label>
+      <select
+        name="q3"
+        formControlName="question3"
+        id="q3"
+        class="form-select"
+        (ngModelChange)="onChange3($event)"
+      >
+        <option *ngFor="let question3 of qArr3" [value]="question3">
+          {{ question3 }}
+        </option>
+      </select>
+
+      <input
+        type="text"
+        id="a3"
+        name="a3"
+        placeholder="Enter answer to question 3"
+        class="form-control"
+        formControlName="answer3"
+      />
+
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          formGroup.controls['answer3'].invalid &&
+          formGroup.controls['answer3'].touched
+        "
+      >
+        <div *ngIf="formGroup.controls['answer3'].hasError('required')">
+          Question Required!
+        </div>
+      </div>
+    </fieldset>
+    <br />
+    <button type="submit" class="btn btn-primary">Register</button>
+    <button class="btn btn-secondary closeBtn" routerLink="/">Close</button>
+  </form>
+</div>
