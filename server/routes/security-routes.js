@@ -13,7 +13,6 @@ const Ajv = require("ajv");
 const bcrypt = require('bcryptjs');
 const ajv = new Ajv();
 
-let saltRounds = 10;
 /**
  * signIn
  * @openapi
@@ -233,27 +232,35 @@ router.post('/verify/users/:email', (req, res, next) => {
  *    '500':
  *     description: Internal Server Error
  */
+const resetPasswordSchema = {
+  properties: { password: { type: 'string '} },
+  required: [ 'password ' ],
+  additionalProperties: false
+}
+
 router.post('/users/:email/reset-password', (req, res, next) => {
   try {
     const email = req.params.email
-    const password = req.body
+    const password = req.body.password
+
+
 
     console.log('User email', email)
 
-    // const validate = ajv.compile(resetPasswordSchema)
-    // const valid = validate(password)
+    const validate = ajv.validate(resetPasswordSchema, password)
 
-    // if (!valid) {
-    //   const err = new Error('Bad Request')
-    //   err.status = 400
-    //   err.errors = validate.errors
-    //   console.log('password validation errors', validate.errors)
-    //   next(err)
-    //   return
-    // }
+    if (!valid) {
+      const err = new Error('Bad Request')
+      err.status = 400
+      err.errors = validate.errors
+      console.log('password validation errors', validate.errors)
+      next(err)
+      return
+    }
 
     mongo(async db => {
       const user = await db.collection('users').findOne({ email: email })
+      const salt = await bcrypt.genSalt(10)
 
       if (!user) {
         const err = new Error('Not Found')
@@ -265,7 +272,9 @@ router.post('/users/:email/reset-password', (req, res, next) => {
 
       console.log('Selected User', user)
 
-      const hashedPassword = bcrypt.hashSync(user.password, saltRounds)
+      const hashedPassword = await bcrypt.hash(password, salt)
+      console.log(password)
+      console.log(hashedPassword)
 
       const result = await db.collection('users').updateOne(
         { email: email },
