@@ -18,6 +18,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { SecurityComponent } from './security/security.component';
 import { SigninComponent } from './security/signin/signin.component';
 import { CreateEmployeeComponent } from './admin/Employee/create-employee/create-employee.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -25,7 +26,7 @@ const routes: Routes = [
     path: '',
     component: BaseLayoutComponent,
     //  Uncomment after signin page implemented
-    canActivate: [ authGuard ],
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -37,7 +38,12 @@ const routes: Routes = [
         path: 'home',
         component: HomeComponent,
         title: 'BCRS: Home',
-      }
+      },
+      {
+        path: 'register',
+        component: RegisterUserComponent,
+        title: 'BCRS: Registration',
+      },
     ],
   },
   {
@@ -48,7 +54,7 @@ const routes: Routes = [
       {
         path: '',
         component: AdminComponent,
-        title: 'BCRS: Admin'
+        title: 'BCRS: Admin',
       },
       {
         path: 'create-employee',
@@ -58,10 +64,10 @@ const routes: Routes = [
       {
         path: 'edit/:email',
         component: EditUserComponent,
-        title: 'BCRS: Administration'
-      }
+        title: 'BCRS: Administration',
+      },
     ],
-    canActivate: [roleGuard]
+    canActivate: [roleGuard],
   },
   {
     // path for the security module (e.g. login, register, forgot password, etc.)
@@ -72,9 +78,9 @@ const routes: Routes = [
       {
         path: 'signin',
         component: SigninComponent,
-        title: 'BCRS: Signin'
-      }
-    ]
+        title: 'BCRS: Signin',
+      },
+    ],
   },
 
   { path: '**', component: PagenotfoundComponent },
