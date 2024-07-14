@@ -19,6 +19,7 @@ import { SecurityComponent } from './security/security.component';
 import { SigninComponent } from './security/signin/signin.component';
 import { CreateEmployeeComponent } from './admin/Employee/create-employee/create-employee.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
+import { EmployeeDirectoryComponent } from './employee-directory/employee-directory.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -43,6 +44,11 @@ const routes: Routes = [
         path: 'register',
         component: RegisterUserComponent,
         title: 'BCRS: Registration',
+      },
+      {
+        path: 'employee',
+        component: EmployeeDirectoryComponent,
+        title: 'BCRS: Employee Directory',
       },
     ],
   },
@@ -81,6 +87,11 @@ const routes: Routes = [
         title: 'BCRS: Signin',
       },
     ],
+  },
+  {
+    path: 'register',
+    component: RegisterUserComponent,
+    title: 'BCRS: Registration',
   },
 
   { path: '**', component: PagenotfoundComponent },
