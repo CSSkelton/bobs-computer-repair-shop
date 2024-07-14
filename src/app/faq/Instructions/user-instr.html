@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+ <link rel="stylesheet" href="styles.css">
+<body>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Create two equal columns that floats next to each other */
+    .column {
+      float: left;
+      width: 50%;
+      padding: 10px;
+      height: 300px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+.header{
+  background-color: #946b2d;
+  padding:20px;
+}
+
+.button{
+  color: green;
+}
+    </style>
+
+</body>
+<div class="header">
+  <center><h2>User Guide </h2></center>
+</div>
+
+
+<div class="row">
+  <div class="column" style=>
+    <center><h2>Sign In Information</h2></center>
+    <ol>
+      <li>Please enter your assigned user name in the field labeled <b>"User Name"</b>.
+      <br>
+      <br>
+      <li>Please enter in your password in the field labeled <b>"Password"</b>.
+      </li>
+      <br>
+      <br>
+      <li>After you have correctly entered in all the required information. Please select the button labeled <b>"Sign In"</b>.
+      </li>
+      <br>
+      <br>
+
+    </ol>
+<center><p> Any information that is not correctly enter in will display a <b>"Sign In Error Message" </b>.</p></center>
+<center><p> <b> Proceed Below to Reset Password</b></p></center>
+
+  </div>
+  <div class="column" >
+
+    <img class="registform-img" src="./Guide Images/SignIn.png" alt=""/>
+
+  </div>
+
+<br>
+<br>
+
+
+</div>
+
+
+<br><br><br><br><br><br><br><br>
+
+
+
+<div class="header1">
+  <center><h3> </h3></center>
+</div>
+
+
+
+
+<div class="row">
+  <div class="column" style=>
+    <center><h2>Password Reset</h2></center>
+    <ol>
+      <li>In order to obtain a new password you will need to answer all the following questions with the correct information. Please select the field label <b>"Question 1"</b>.
+      <br>
+      <br>
+      <li>After correctly answer the first question. Please proceed on to the field labeled <b>"Question 2"</b>.
+      </li>
+      <br>
+      <br>
+      <li>The final question you will need to answer will be labeled <b>"Question 3"</b>.
+      </li>
+      <br>
+      <br>
+      <li>This process can not be completed with missing data.After you have correctly entered in all the required information. Please select the button labeled <b>"Reset"</b>.
+      </li>
+      <br>
+      <br>
+
+    </ol>
+<center><p> You will be prompted to create a new password and be eligible to log back into the system.</p></center>
+
+  </div>
+
+  <div class="column" >
+
+    <img class="registform-img" src="./Guide Images/Password reset.png" alt=""/>
+    <div class="button-faq">
+      <button type="button">FAQ Guide</button>
+      <button type on(click)="signOut()">Home</button>
+    </div>
+  </div>
+
+
+</html>
