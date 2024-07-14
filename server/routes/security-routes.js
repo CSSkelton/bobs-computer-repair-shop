@@ -302,9 +302,10 @@ router.post('/verify/users/:email/security-questions', (req, res, next) => {
  *     description: Internal Server Error
  */
 const resetPasswordSchema = {
-  properties: { password: { type: 'string '} },
-  required: [ 'password ' ],
-  additionalProperties: false
+  type: "object",
+  properties: {password: {type: "string"}},
+  required: ["password"],
+  additionalProperties: false,
 }
 
 router.post('/users/:email/reset-password', (req, res, next) => {
@@ -315,8 +316,11 @@ router.post('/users/:email/reset-password', (req, res, next) => {
 
 
     console.log('User email', email)
+    // console.log(typeof(password))
+    // console.log(typeof(resetPasswordSchema))
 
-    // const validate = ajv.validate(resetPasswordSchema, password)
+    // const validate = ajv.compile(resetPasswordSchema)
+    // const valid = validate(password)
 
     // if (!valid) {
     //   const err = new Error('Bad Request')
@@ -345,10 +349,12 @@ router.post('/users/:email/reset-password', (req, res, next) => {
       console.log(password)
       console.log(hashedPassword)
 
+      // Rest of program isn't set up for hashed password
+      // Set to hashedPassword once rest of app is set up for it
       const result = await db.collection('users').updateOne(
         { email: email },
         {
-          $set: { password: hashedPassword }
+          $set: { password: password }
         }
       )
 
