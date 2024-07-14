@@ -86,12 +86,12 @@ const routes: Routes = [
         component: SigninComponent,
         title: 'BCRS: Signin',
       },
+      {
+        path: 'register',
+        component: RegisterUserComponent,
+        title: 'BCRS: Registration',
+      },
     ],
-  },
-  {
-    path: 'register',
-    component: RegisterUserComponent,
-    title: 'BCRS: Registration',
   },
 
   { path: '**', component: PagenotfoundComponent },
