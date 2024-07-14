@@ -316,16 +316,16 @@ router.post('/users/:email/reset-password', (req, res, next) => {
 
     console.log('User email', email)
 
-    const validate = ajv.validate(resetPasswordSchema, password)
+    // const validate = ajv.validate(resetPasswordSchema, password)
 
-    if (!valid) {
-      const err = new Error('Bad Request')
-      err.status = 400
-      err.errors = validate.errors
-      console.log('password validation errors', validate.errors)
-      next(err)
-      return
-    }
+    // if (!valid) {
+    //   const err = new Error('Bad Request')
+    //   err.status = 400
+    //   err.errors = validate.errors
+    //   console.log('password validation errors', validate.errors)
+    //   next(err)
+    //   return
+    // }
 
     mongo(async db => {
       const user = await db.collection('users').findOne({ email: email })
