@@ -35,6 +35,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { CookieService } from 'ngx-cookie-service';
 import { FaqComponent } from './faq/faq.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { FaqComponent } from './faq/faq.component';
     PagenotfoundComponent,
     EditUserComponent,
     FaqComponent,
-    CreateEmployeeComponent
+    CreateEmployeeComponent,
+    RegisterUserComponent
   ],
   imports: [
     BrowserModule,
