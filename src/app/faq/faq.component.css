@@ -43,4 +43,52 @@ body {
 
 .card{
 	margin-bottom: 20px;
+  height: 200px;
+
 }
+
+.resetpassword-img{
+  background-size: fit;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 150px;
+}
+
+        #leftbox {
+            float: left;
+            background: Red;
+            width: 25%;
+            height: 280px;
+        }
+
+        #middlebox {
+            float: left;
+            background: Green;
+            width: 50%;
+            height: 280px;
+            padding: 0 10px;
+        }
+
+        #rightbox {
+            float: right;
+            background: blue;
+            width: 25%;
+            height: 280px;
+        }
+
+        h1 {
+            color: black;
+            text-align: center;
+        }
+
+        .faq-header{
+          padding: 5px;
+          text-align: center;
+          background: #946b2d;
+          color: white;
+          font-size: 30px;
+        }
+
+        .center-container{
+          padding-left: 450px;
+        }
