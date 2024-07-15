@@ -6,7 +6,7 @@
     </mat-card-subtitle>
 
     <mat-card-content>
-      <mat-card class="mat-elevation-z0" fxLayout="column" fxLayoutGap="10px">
+      <mat-card class="mat-elevation-z0" fxLayout="column" fxLayoutGap="10px"  class="form-container">
         <form
           [formGroup]="secQuestionForm"
           (ngSubmit)="onSubmit(); secQuestionForm.reset()">
@@ -23,8 +23,8 @@
           </mat-card-content>
 
           <mat-card-actions>
-            <div>
-              <button type="submit" fxFlex mat-raised-button color="primary">
+            <div style="margin: auto auto;">
+              <button type="submit" fxFlex mat-raised-button style="background-color: #5d5d5d; color: #0e1a40;">
                 Submit
               </button>
             </div>

@@ -1,8 +1,14 @@
 .verify-email-container {
   width: 35%;
   margin: 15% auto;
+  background-color: #0e1a40;
 }
 
 .verify-email-container > mat-card-title, mat-card-subtitle {
   text-align: center;
+  color: #946b2d;
+}
+
+.form-container {
+  background-color: #946b2d;
 }
