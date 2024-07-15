@@ -44,11 +44,6 @@ const routes: Routes = [
         title: 'BCRS: Home',
       },
       {
-        path: 'register',
-        component: RegisterUserComponent,
-        title: 'BCRS: Registration',
-      },
-      {
         path: 'employee',
         component: EmployeeDirectoryComponent,
         title: 'BCRS: Employee Directory',
