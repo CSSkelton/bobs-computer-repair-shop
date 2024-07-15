@@ -1,0 +1,8 @@
+.signin-container {
+  width: 35%;
+  margin: 15% auto;
+}
+
+.signin-container > mat-card-title, mat-card-subtitle {
+  text-align: center;
+}

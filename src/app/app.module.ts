@@ -38,6 +38,10 @@ import { FaqComponent } from './faq/faq.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { EmployeeDirectoryComponent } from './employee-directory/employee-directory.component';
 
+import { VerifyEmailComponent } from './security/password-reset/verify-email/verify-email.component';
+import { VerifySecQuestionsComponent } from './security/password-reset/verify-sec-questions/verify-sec-questions.component';
+import { ResetComponent } from './security/password-reset/reset/reset.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +57,10 @@ import { EmployeeDirectoryComponent } from './employee-directory/employee-direct
     FaqComponent,
     CreateEmployeeComponent,
     RegisterUserComponent,
-    EmployeeDirectoryComponent
+    EmployeeDirectoryComponent,
+    VerifyEmailComponent,
+    VerifySecQuestionsComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,
