@@ -76,11 +76,12 @@ export class VerifySecQuestionsComponent {
     ]
 
     console.log(securityQuestions)
+    const email = this.email;
 
     this.http.post(`/api/security/verify/users/${this.email}/security-questions`, {securityQuestions}).subscribe({
       next: (res) => {
         console.log('Response:', res)
-        this.router.navigate(['/security/signin'], )
+        this.router.navigate(['/security/password-reset'], { queryParams: { email }, skipLocationChange: true})
       },
       error: (err) => {
         console.log('Error from verifySecurityQuestions API Call', err)
