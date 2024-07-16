@@ -35,15 +35,11 @@ export class EditUserComponent {
   //   whatIsTheModelOfYourFirstCar: 'accord',
   // };
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    console.log('Calling findById....');
-
-    /*
-    this.route.queryParamMap.subscribe((p: any) => {
-      console.log(p['params']);
-    });
-    */
-  }
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.email = this.route.snapshot.paramMap.get('email');

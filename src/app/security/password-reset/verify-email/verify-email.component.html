@@ -1,0 +1,39 @@
+<div fxLayout="column">
+  <mat-card fxFlex class="mat-elevation-z8 verify-email-container">
+    <mat-card-title>Verify Email</mat-card-title>
+    <mat-card-subtitle>
+      Please enter a valid email address to continue.
+    </mat-card-subtitle>
+
+    <mat-card-content>
+      <mat-card class="mat-elevation-z0" fxLayout="column" fxLayoutGap="10px" class="form-container">
+        <form
+          [formGroup]="emailForm"
+          (ngSubmit)="onSubmit(); emailForm.reset()"
+          style="margin: auto auto"
+        >
+          <mat-card-content>
+            <mat-form-field fxFlex appearance="fill">
+              <mat-label for="email" id="email">Email</mat-label>
+              <input
+                type="text"
+                matInput
+                formControlName="email"
+                id="email"
+                name="email"
+              />
+            </mat-form-field>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <div style="margin: auto auto;">
+              <button type="submit" fxFlex mat-raised-button style="background-color: #5d5d5d; color: #0e1a40;">
+                Submit
+              </button>
+            </div>
+          </mat-card-actions>
+        </form>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
+</div>

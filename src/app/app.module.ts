@@ -33,13 +33,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
-<<<<<<< HEAD
 import { CookieService } from 'ngx-cookie-service';
-import { SecurityComponent } from './security/security.component';
 import { FaqComponent } from './faq/faq.component';
 import { UserConfigurationComponent } from './faq/admin/user-configuration/user-configuration.component';
-=======
->>>>>>> main
+import { RegisterUserComponent } from './register-user/register-user.component';
+import { EmployeeDirectoryComponent } from './employee-directory/employee-directory.component';
+
+import { VerifyEmailComponent } from './security/password-reset/verify-email/verify-email.component';
+import { VerifySecQuestionsComponent } from './security/password-reset/verify-sec-questions/verify-sec-questions.component';
+import { ResetComponent } from './security/password-reset/reset/reset.component';
 
 @NgModule({
   declarations: [
@@ -53,12 +55,17 @@ import { UserConfigurationComponent } from './faq/admin/user-configuration/user-
     SecurityComponent,
     PagenotfoundComponent,
     EditUserComponent,
-<<<<<<< HEAD
     FaqComponent,
 UserConfigurationComponent,
 =======
     CreateEmployeeComponent
 >>>>>>> main
+    CreateEmployeeComponent,
+    RegisterUserComponent,
+    EmployeeDirectoryComponent,
+    VerifyEmailComponent,
+    VerifySecQuestionsComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,

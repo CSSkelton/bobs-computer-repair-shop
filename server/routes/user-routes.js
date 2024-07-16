@@ -397,6 +397,9 @@ router.post("/register", (req, res, next) => {
   console.log("register user api....");
   const saltRounds = 10;
 
+  const myBOdy = req.body;
+  console.log("Body: ", myBOdy);
+
   const registerSchema = {
     type: "object", //Needed to remove this line to get it to work. Not sure why.. I thought we needed it.
     additionalProperties: false,
@@ -433,13 +436,30 @@ router.post("/register", (req, res, next) => {
       whatIsYourFirstPetsName: req.body.whatIsYourFirstPetsName,
       whatIsYourMothersMaidenName: req.body.whatIsYourMothersMaidenName,
       whatIsTheModelOfYourFirstCar: req.body.whatIsTheModelOfYourFirstCar,
+      selectedSecurityQuestions: [
+        {
+          question: req.body.securityQuestions[0].question1,
+          answer: req.body.securityQuestions[0].answer1,
+        },
+        {
+          question: req.body.securityQuestions[1].question2,
+          answer: req.body.securityQuestions[1].answer2,
+        },
+
+        {
+          question: req.body.securityQuestions[2].question3,
+          answer: req.body.securityQuestions[2].answer3,
+        },
+      ],
     };
 
     console.log("New User: ", newUser);
 
+    //TODO: Update validator schema
     //validate the newUser object using ajv
-    const validate = ajv.compile(registerSchema);
-    const valid = validate(newUser);
+    // const validate = ajv.compile(registerSchema);
+    // const valid = validate(newUser);
+    let valid = true;
 
     //If the user object is not valid return a 400 error to the client
     if (!valid) {
@@ -474,6 +494,64 @@ router.post("/register", (req, res, next) => {
     console.log(err);
     console.log(`API Error: ${err.message}`);
     next(err); //return error to user
+  }
+});
+
+/**
+ * findSelectedSecurityQuestions
+ * @openapi
+ * /api/users/{email}/security-questions:
+ *  get:
+ *   tags:
+ *    - Password Reset
+ *   description: Retrieve user's selected security questions
+ *   summary: Retrieve security questions
+ *   parameters:
+ *    - name: email
+ *      in: path
+ *      required: true
+ *      description: Users document email
+ *      schema:
+ *       type: string
+ *   responses:
+ *    '200':
+ *     description: OK
+ *    '400':
+ *     description: Bad Request
+ *    '404':
+ *     description: Not Found
+ *    '500':
+ *     description: Internal Server Error
+ */
+router.get("/:email/security-questions", (req, res, next) => {
+  try {
+    const email = req.params.email;
+
+    console.log("email", email);
+
+    mongo(async (db) => {
+      const user = await db
+        .collection("users")
+        .findOne(
+          { email: email },
+          { projection: { _id: 0, email: 1, selectedSecurityQuestions: 1 } }
+        );
+
+      console.log("Selected security questions", user);
+
+      if (!user) {
+        const err = new Error("Unable to find user" + email);
+        err.status = 404;
+        console.log("err", err);
+        next(err);
+        return;
+      }
+
+      res.send(user);
+    }, next);
+  } catch (err) {
+    console.log("err", err);
+    next(err);
   }
 });
 

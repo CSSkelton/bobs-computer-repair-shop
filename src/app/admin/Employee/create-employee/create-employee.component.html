@@ -11,79 +11,89 @@
         </div>
       </div>
 
-
-
       <div class="card">
         <div class="card-body">
-          <div [formGroup]="employeeForm" (ngSubmit)="createEmployee();">
+          <form [formGroup]="employeeForm" (ngSubmit)="createEmployee();" class="form-group">
+            <legend>Employee Information</legend>
 
-            <div class="form-group">
-              <legend>Employee Information</legend>
+            <div class="mb-3">
+              <label for="txtFirstName">First Name:</label>
+              <input type="text" id="txtFirstName" class="form-control" formControlName="firstName" required>
+            </div>
 
-              <div class="mb-3">
-                <label for="txtFirstName">First Name:</label>
-                <input type="text" id="txtFirstName" class="form-control" formControlName="firstName" required>
+            <!--first name error handling-->
+            <div *ngIf="employeeForm.controls['firstName'].touched && employeeForm.controls['firstName'].hasError('required')">
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                First name is required.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
+            </div>
+            <!-- end first name error handling-->
+            <div class="mb-3">
+              <label for="lastName">Last Name:</label>
+              <input id="lastname" name="lastName" type="text" class="form-control" formControlName="lastName" required>
+            </div>
 
-              <!--first name error handling-->
-              <div *ngIf="employeeForm.controls['firstName'].touched && employeeForm.controls['firstName'].hasError('required')">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  First name is required.
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+            <!--last name error handling-->
+            <div *ngIf="employeeForm.controls['lastName'].touched && employeeForm.controls['lastName'].hasError('required')">
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Last name is required.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
-              <!-- end first name error handling-->
-              <div class="mb-3">
-                <label for="lastName">Last Name:</label>
-                <input id="lastname" name="lastName" type="text" class="form-control" formControlName="lastName" required>
+            </div>
+            <!-- end last name error handling-->
+
+            <div class="mb-3">
+              <label for="txtAddress">Address:</label>
+              <input type="text" id="txtAddress" class="form-control" formControlName="address" required>
+            </div>
+
+            <!-- address error handling-->
+            <div *ngIf="employeeForm.controls['email'].touched && employeeForm.controls['address'].hasError('required')">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              Address is required.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            </div>
+            <!-- // end address error handling -->
+
+            <div class="mb-3">
+              <label for="txtEmail">Email:</label>
+              <input type="text" id="txtEmail" class="form-control" formControlName="email" required>
+            </div>
+
+            <!-- email error handling-->
+            <div *ngIf="employeeForm.controls['email'].touched && employeeForm.controls['email'].hasError('required')">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              Email is required.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            </div>
+            <!-- // end email error handling -->
+
+            <div class="mb-3">
+            <label for="txtPassword">Password:</label>
+            <input type="password" id="txtPassword" class="form-control" formControlName="password" required>
+            </div>
+
+            <!-- password error handling -->
+            <div *ngIf="employeeForm.controls['password'].touched && employeeForm.controls['password'].hasError('required')">
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Password is required.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
-
-              <!--last name error handling-->
-              <div *ngIf="employeeForm.controls['lastName'].touched && employeeForm.controls['lastName'].hasError('required')">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  Last name is required.
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-              </div>
-              <!-- end last name error handling-->
-
-              <div class="mb-3">
-                <label for="txtEmail">Email:</label>
-                <input type="text" id="txtEmail" class="form-control" formControlName="email" required>
-              </div>
-
-              <!-- email error handling-->
-               <div *ngIf="employeeForm.control['email'].touched && employeeForm.controls['email'].hasError('required')">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  Email is required.
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-               </div>"
-               <!-- // end email error handling -->
-
-               <div class="mb-3">
-                <label for="txtPassword">Password:</label>
-                <input type="password" id="txtPassword" class="form-control" formControlName="password" required>
-               </div>
-
-               <!-- password error handling -->
-                <div *ngIf="employeeForm.controls['password'].touched && employeeForm.controls['password'].hasError('required')">
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Password is required.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>
-                </div>
-                <!-- end of password handling -->
+            </div>
+            <!-- end of password handling -->
 
 
-                <!-- submit button for form-->
-                <div class="employeeForm-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                  <button type="submit" class="btn btn-primary">Clear Form</button>
-                </div>
-              </fieldset>
-            </form>
-          </div>
+            <!-- submit button for form-->
+            <div class="employeeForm-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Clear Form</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
+  </div>
+</div>

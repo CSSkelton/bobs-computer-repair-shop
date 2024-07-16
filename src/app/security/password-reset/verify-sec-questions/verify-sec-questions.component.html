@@ -1,0 +1,36 @@
+<div fxLayout="column">
+  <mat-card fxFlex class="mat-elevation-z8 sec-questions-container">
+    <mat-card-title>Verify Security Questions</mat-card-title>
+    <mat-card-subtitle>
+      You must enter a valid employee ID to proceed.
+    </mat-card-subtitle>
+
+    <mat-card-content>
+      <mat-card class="mat-elevation-z0" fxLayout="column" fxLayoutGap="10px"  class="form-container">
+        <form
+          [formGroup]="secQuestionForm"
+          (ngSubmit)="onSubmit(); secQuestionForm.reset()">
+
+          <mat-card-content>
+            <label for="question1" class="form-label">{{ question1 }}</label>
+            <input type="text" formControlName="answer1" class="form-control">
+
+            <label for="question2" class="form-label">{{ question2 }}</label>
+            <input type="text" formControlName="answer2" class="form-control">
+
+            <label for="question3" class="form-label">{{ question3 }}</label>
+            <input type="text" formControlName="answer3" class="form-control">
+          </mat-card-content>
+
+          <mat-card-actions>
+            <div style="margin: auto auto;">
+              <button type="submit" fxFlex mat-raised-button style="background-color: #5d5d5d; color: #0e1a40;">
+                Submit
+              </button>
+            </div>
+          </mat-card-actions>
+        </form>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
+</div>
