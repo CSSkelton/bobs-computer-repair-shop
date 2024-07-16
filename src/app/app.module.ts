@@ -35,7 +35,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { CookieService } from 'ngx-cookie-service';
 import { FaqComponent } from './faq/faq.component';
-import { UserConfigurationComponent } from './faq/admin/user-configuration/user-configuration.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { EmployeeDirectoryComponent } from './employee-directory/employee-directory.component';
 
@@ -56,10 +55,6 @@ import { ResetComponent } from './security/password-reset/reset/reset.component'
     PagenotfoundComponent,
     EditUserComponent,
     FaqComponent,
-UserConfigurationComponent,
-=======
-    CreateEmployeeComponent
->>>>>>> main
     CreateEmployeeComponent,
     RegisterUserComponent,
     EmployeeDirectoryComponent,
@@ -85,7 +80,8 @@ UserConfigurationComponent,
     MatListModule,
     FormsModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

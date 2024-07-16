@@ -51,12 +51,11 @@ const routes: Routes = [
         component: EmployeeDirectoryComponent,
         title: 'BCRS: Employee Directory',
       },
-      },
       {
         path: 'faq',
         component: FaqComponent,
-        title: 'BCRS: Faq',
-      },
+        title: 'BCRS: FAQ',
+      }
     ],
   },
   {
@@ -78,10 +77,7 @@ const routes: Routes = [
         path: 'edit/:email',
         component: EditUserComponent,
         title: 'BCRS: Administration'
-      },
-
-        title: 'BCRS: Administration',
-      },
+      }
     ],
     canActivate: [roleGuard],
   },
@@ -117,8 +113,6 @@ const routes: Routes = [
         title: 'BCRS: Password Reset'
       }
     ]
-
-    ],
   },
 
   { path: '**', component: PagenotfoundComponent },
