@@ -23,6 +23,7 @@ import { EmployeeDirectoryComponent } from './employee-directory/employee-direct
 import { VerifyEmailComponent } from './security/password-reset/verify-email/verify-email.component';
 import { VerifySecQuestionsComponent } from './security/password-reset/verify-sec-questions/verify-sec-questions.component';
 import { ResetComponent } from './security/password-reset/reset/reset.component';
+import { ServiceRepairComponent } from './service-repair/service-repair.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -51,6 +52,11 @@ const routes: Routes = [
       {
         path: 'employee',
         component: EmployeeDirectoryComponent,
+        title: 'BCRS: Employee Directory',
+      },
+      {
+        path: 'service',
+        component: ServiceRepairComponent,
         title: 'BCRS: Employee Directory',
       },
     ],
@@ -97,18 +103,18 @@ const routes: Routes = [
       {
         path: 'verify-email',
         component: VerifyEmailComponent,
-        title: 'BCRS: Password Reset'
+        title: 'BCRS: Password Reset',
       },
       {
         path: 'verify-security-questions',
         component: VerifySecQuestionsComponent,
-        title: 'BCRS: Password Reset'
+        title: 'BCRS: Password Reset',
       },
       {
         path: 'password-reset',
         component: ResetComponent,
-        title: 'BCRS: Password Reset'
-      }
+        title: 'BCRS: Password Reset',
+      },
     ],
   },
 
