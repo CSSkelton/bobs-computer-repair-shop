@@ -43,6 +43,7 @@ import { ChartModule } from 'primeng/chart';
 import { VerifyEmailComponent } from './security/password-reset/verify-email/verify-email.component';
 import { VerifySecQuestionsComponent } from './security/password-reset/verify-sec-questions/verify-sec-questions.component';
 import { ResetComponent } from './security/password-reset/reset/reset.component';
+import { ServiceRepairComponent } from './service-repair/service-repair.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ResetComponent } from './security/password-reset/reset/reset.component'
     EmployeeDirectoryComponent,
     VerifyEmailComponent,
     VerifySecQuestionsComponent,
-    ResetComponent
+    ResetComponent,
+    ServiceRepairComponent
   ],
   imports: [
     BrowserModule,

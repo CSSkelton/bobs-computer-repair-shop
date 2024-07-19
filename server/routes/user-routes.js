@@ -555,4 +555,72 @@ router.get("/:email/security-questions", (req, res, next) => {
   }
 });
 
+//Create Invoice
+/**
+ * createInvoice
+ * @openapi
+ * /api/users/invoice:
+ *  post:
+ *   summary: post invoice details to db
+ *   description: Updates user document
+ *   requestBody:
+ *    description: invoice details
+ *    content:
+ *     application/json:
+ *      schema:
+ *       properties:
+ *        email:
+ *         type: string
+ *        fullName:
+ *         type: string
+ *        lineItems:
+ *         type: array
+ *            items:
+ *              type: object
+ *              properties:
+ *                  items:
+ *                    type: array
+ *                    items:
+ *                      type: object
+ *                      properties:
+ *                        partsNumber:
+ *                           type: number
+ *
+ *
+ *
+ *   responses:
+ *    '200':
+ *     description: user registered
+ *    '400':
+ *     description: Bad Request
+ *    '404':
+ *     description: User already in database
+ *    '500':
+ *     description: Internal Server Error
+ *   tags:
+ *    - User
+ */
+router.post("/invoice", (req, res, next) => {
+  console.log("create invoice api....");
+
+  console.log("req body: ", req.body);
+
+  const invoice = {
+    email: req.body.email,
+    fullName: req.body.fullName,
+    lineItems: req.body.lineItems,
+  };
+
+  console.log("Invoice: ", invoice);
+  try {
+    mongo(async (db) => {
+      const result = await db.collection("users").insertOne(invoice);
+    }, next);
+    res.send(invoice);
+  } catch (err) {
+    console.log("err", err);
+    next(err);
+  }
+});
+
 module.exports = router;
