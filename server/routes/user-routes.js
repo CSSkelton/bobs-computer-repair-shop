@@ -575,16 +575,16 @@ router.get("/:email/security-questions", (req, res, next) => {
  *         type: string
  *        lineItems:
  *         type: array
- *            items:
- *              type: object
- *              properties:
- *                  items:
- *                    type: array
- *                    items:
- *                      type: object
- *                      properties:
- *                        partsNumber:
- *                           type: number
+ *         items:
+ *           type: object
+ *           properties:
+ *               items:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     partsNumber:
+ *                        type: number
  *
  *
  *
