@@ -44,7 +44,7 @@ router.get('/purchases-graph', (req, res, next) => {
           {
             '_id':
             {
-              'title': '$lineItems.title',
+              'service': '$lineItems.title',
               'price': '$lineItems.price'
             },
             'count':
@@ -56,7 +56,7 @@ router.get('/purchases-graph', (req, res, next) => {
         {
           $sort:
           {
-            '_id.title': 1
+            '_id.service': 1
           }
         }
       ])
