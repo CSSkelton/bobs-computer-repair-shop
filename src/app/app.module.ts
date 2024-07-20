@@ -82,7 +82,8 @@ import { ResetComponent } from './security/password-reset/reset/reset.component'
     MatListModule,
     FormsModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent],
