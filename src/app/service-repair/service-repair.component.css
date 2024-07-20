@@ -1,0 +1,12 @@
+.banner {
+  background-color: #946b2d;
+  height: 100px;
+  text-align: center;
+}
+.container {
+  width: 1500px;
+  margin-top: 20px;
+}
+.checkBoxLabel {
+  font-size: x-large;
+}

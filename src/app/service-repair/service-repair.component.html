@@ -1,0 +1,206 @@
+<div class="container">
+  <div class="banner">
+    <div><h2>Bob's Computer</h2></div>
+    <div><h2>Repair Shop Form</h2></div>
+  </div>
+  <hr />
+  <form [formGroup]="serviceForm" (ngSubmit)="serviceRequest()">
+    <fieldset>
+      <legend style="font-weight: bolder">Customer Info:</legend>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter customer's email address"
+        class="form-control"
+        formControlName="email"
+        style="width: 400px"
+        required
+      />
+      <div
+        style="width: 400px"
+        class="alert alert-danger"
+        *ngIf="
+          serviceForm.controls['email'].invalid &&
+          serviceForm.controls['email'].touched
+        "
+      >
+        <div *ngIf="serviceForm.controls['email'].hasError('required')">
+          Email is Required!
+        </div>
+      </div>
+      <br />
+
+      <input
+        type="text"
+        id="customerName"
+        name="customerName"
+        placeholder="Enter customer's name"
+        class="form-control"
+        formControlName="customerName"
+        style="width: 400px"
+        required
+      />
+      <div
+        style="width: 400px"
+        class="alert alert-danger"
+        *ngIf="
+          serviceForm.controls['customerName'].invalid &&
+          serviceForm.controls['customerName'].touched
+        "
+      >
+        <div *ngIf="serviceForm.controls['customerName'].hasError('required')">
+          Customer name is Required!
+        </div>
+      </div>
+      <hr />
+    </fieldset>
+    <fieldset>
+      <legend style="font-weight: bolder">Select service:</legend>
+      <div class="row">
+        <div class="col">
+          <label class="checkBoxLabel">
+            <input
+              type="checkbox"
+              id="passwordReset"
+              name="passwordReset"
+              formControlName="passwordReset"
+            />
+            Password Reset ($39.99)
+          </label>
+        </div>
+        <div class="col">
+          <label class="checkBoxLabel">
+            <input
+              type="checkbox"
+              id="spywareRemoval"
+              name="spywareRemoval"
+              formControlName="spywareRemoval"
+            />
+            Spyware Removal ($99.99)
+          </label>
+        </div>
+        <div class="col">
+          <label class="checkBoxLabel">
+            <input
+              type="checkbox"
+              id="ramUpgrade"
+              name="ramUpgrade"
+              formControlName="ramUpgrade"
+            />
+
+            Ram Upgrade ($129.99)
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label class="checkBoxLabel">
+            <input
+              type="checkbox"
+              id="softwareInstallation"
+              name="softwareInstallation"
+              formControlName="softwareInstallation"
+            />
+            Software Installation ($49.99)
+          </label>
+        </div>
+        <div class="col">
+          <label class="checkBoxLabel">
+            <input
+              type="checkbox"
+              id="pcTuneUp"
+              name="pcTuneUp"
+              formControlName="pcTuneUp"
+            />
+            PC Tune-up ($89.99)
+          </label>
+        </div>
+        <div class="col">
+          <label class="checkBoxLabel">
+            <input
+              type="checkbox"
+              id="keyBoardCleaning"
+              name="keyBoardCleaning"
+              formControlName="keyBoardCleaning"
+            />
+            Keyboard Cleaning ($45.00)
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label class="checkBoxLabel">
+            <input
+              type="checkbox"
+              id="diskCleanup"
+              name="diskCleanup"
+              formControlName="diskCleanup"
+            />
+            Disk Clean-up ($129.99)
+          </label>
+        </div>
+      </div>
+    </fieldset>
+    <hr />
+    <div>
+      <fieldset style="font-weight: bolder">
+        <legend>Other Services:</legend>
+        <label>Service:</label>
+        <input
+          type="text"
+          id="otherService"
+          name="otherService"
+          placeholder="Enter other service"
+          class="form-control"
+          formControlName="otherService"
+          style="width: 400px"
+        />
+      </fieldset>
+      <hr />
+      <fieldset style="font-weight: bolder">
+        <legend>Parts & Labor:</legend>
+        <label>Parts:</label>
+        <input
+          type="text"
+          id="parts"
+          name="parts"
+          placeholder="Enter number of parts"
+          class="form-control"
+          formControlName="parts"
+          style="width: 200px"
+        />
+
+        <br />
+        <label>Labor:</label>
+        <input
+          type="text"
+          id="labor"
+          name="labor"
+          placeholder="Enter number of hours"
+          class="form-control"
+          formControlName="labor"
+          style="width: 200px"
+        />
+      </fieldset>
+      <br />
+      <hr />
+      <div>
+        <button
+          type="submit"
+          [disabled]="!serviceForm.valid"
+          class="btn btn-primary"
+        >
+          Submit
+        </button>
+        <button
+          style="margin-left: 50px"
+          class="btn btn-secondary closeBtn"
+          routerLink="/"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
