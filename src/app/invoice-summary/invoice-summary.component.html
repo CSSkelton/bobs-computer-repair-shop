@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="banner">
+    <div><h2>Invoice Summary</h2></div>
+  </div>
+  <hr />
+  <div style="text-align: center">
+    <div>
+      <h5>Name: {{ invoiceSummary.fullName }}</h5>
+      <h5>Order Date: {{ invoiceSummary.orderDate }}</h5>
+    </div>
+    <hr />
+    <div>
+      <table style="width: 500px; margin-left: 350px">
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+        <tr *ngFor="let item of invoiceSummary.lineItems">
+          <td>{{ item.itemName }}</td>
+          <td>{{ item.itemPrice | currency }}</td>
+        </tr>
+      </table>
+    </div>
+
+    <hr />
+    <div>
+      <h5>Invoice Total: {{ invoiceSummary.invoiceTotal | currency }}</h5>
+    </div>
+  </div>
+
+  <div>
+    <button
+      type="submit"
+      (click)="print()"
+      class="btn btn-primary"
+      style="margin-left: 550px"
+    >
+      Print
+    </button>
+    <button
+      style="margin-left: 50px"
+      class="btn btn-secondary closeBtn"
+      routerLink="/"
+    >
+      Close
+    </button>
+  </div>
+</div>

@@ -569,32 +569,39 @@ router.get("/:email/security-questions", (req, res, next) => {
  *     application/json:
  *      schema:
  *       properties:
- *        email:
+ *       email:
  *         type: string
  *        fullName:
  *         type: string
  *        lineItems:
- *         type: array
+ *           type: array
  *            items:
  *              type: object
- *              properties:
- *                  items:
- *                    type: array
- *                    items:
- *                      type: object
- *                      properties:
- *                        partsNumber:
- *                           type: number
- *
- *
- *
+ *            properties:
+ *             items:
+ *               type: array
+ *                 items:
+ *                   type: object
+ *                 properties:
+ *                     itemName:
+ *                        type: string
+ *                     itemPrice:
+ *                        type: string
+ *          partsNumber:
+ *            type: string
+ *          laborAmt:
+ *            type: string
+ *          lineItemTotal:
+ *            type: string
+ *          invoiceTotal:
+ *            type: string
+ *          orderDate:
+ *            type: string
  *   responses:
  *    '200':
- *     description: user registered
+ *     description: Invoice created
  *    '400':
  *     description: Bad Request
- *    '404':
- *     description: User already in database
  *    '500':
  *     description: Internal Server Error
  *   tags:
@@ -609,12 +616,17 @@ router.post("/invoice", (req, res, next) => {
     email: req.body.email,
     fullName: req.body.fullName,
     lineItems: req.body.lineItems,
+    partsNumber: req.body.partsNumber,
+    laborAmt: req.body.laborAmt,
+    lineItemTotal: req.body.lineItemTotal,
+    invoiceTotal: req.body.invoiceTotal,
+    orderDate: req.body.orderDate,
   };
 
   console.log("Invoice: ", invoice);
   try {
     mongo(async (db) => {
-      const result = await db.collection("users").insertOne(invoice);
+      const result = await db.collection("invoices").insertOne(invoice);
     }, next);
     res.send(invoice);
   } catch (err) {
@@ -623,4 +635,14 @@ router.post("/invoice", (req, res, next) => {
   }
 });
 
+//findInvoiceDetails
+router.get("/uses/:email", async (req, res) => {
+  try {
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: `Server Exception: ${err.message}`,
+    });
+  }
+});
 module.exports = router;
