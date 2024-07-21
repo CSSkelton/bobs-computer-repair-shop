@@ -45,6 +45,7 @@ import { VerifySecQuestionsComponent } from './security/password-reset/verify-se
 import { ResetComponent } from './security/password-reset/reset/reset.component';
 import { ServiceRepairComponent } from './service-repair/service-repair.component';
 import { ServiceGraphComponent } from './admin/service-graph/service-graph.component';
+import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { ServiceGraphComponent } from './admin/service-graph/service-graph.compo
     VerifySecQuestionsComponent,
     ResetComponent,
     ServiceRepairComponent,
-    ServiceGraphComponent
+    ServiceGraphComponent,
+    InvoiceSummaryComponent
   ],
   imports: [
     BrowserModule,
