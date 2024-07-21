@@ -35,7 +35,7 @@ const router = express.Router();
 router.get('/purchases-graph', (req, res, next) => {
   try {
     mongo(async (db) => {
-      const data = await db.collection("users").aggregate([
+      const data = await db.collection("invoices").aggregate([
         {
           $unwind: '$lineItems'
         },
