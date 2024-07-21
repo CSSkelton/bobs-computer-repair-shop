@@ -24,6 +24,7 @@ import { VerifyEmailComponent } from './security/password-reset/verify-email/ver
 import { VerifySecQuestionsComponent } from './security/password-reset/verify-sec-questions/verify-sec-questions.component';
 import { ResetComponent } from './security/password-reset/reset/reset.component';
 import { ServiceRepairComponent } from './service-repair/service-repair.component';
+import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -53,6 +54,11 @@ const routes: Routes = [
         path: 'service',
         component: ServiceRepairComponent,
         title: 'BCRS: Employee Directory',
+      },
+      {
+        path: 'invoice-summary',
+        component: InvoiceSummaryComponent,
+        title: 'BCRS: Invoice Summary',
       },
     ],
   },
