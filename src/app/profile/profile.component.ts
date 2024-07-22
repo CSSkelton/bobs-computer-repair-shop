@@ -8,6 +8,7 @@
 import { Component } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { UserInterface } from '../user-interface';
+import { EmployeeService } from '../shared/employee.service';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -35,7 +36,7 @@ export class ProfileComponent {
   })
 
   //Injecting the user-interface, CookieService, Router, and HttpClient
-  constructor (private cookieService: CookieService, private  userService: UserInterface, private fb: FormBuilder) {
+  constructor (private cookieService: CookieService, private employeeService: EmployeeService, private fb: FormBuilder) {
     this.user = {} as UserInterface // initializing the user variable
     this.errorMessage = '' // initializing the error message variable
     this.profileOnSaveError = '' // initializing the error message variable
@@ -49,13 +50,13 @@ export class ProfileComponent {
     console.log('cookie', cookie) // logging the cookie
 
     // call to the get
-    this.userService.getuserByemail(cookie.email).subsribe({
+    this.employeeService.getEmployeeById(cookie.empId).subscribe({
       //
       next: (res) => {
         this.user = res // setting the user variable to the response
         console.log('user', this.user) // logging the user variable
       },
-      // if error occurs in the getuserServicebyemail function call this function to handle the error
+      // if error occurs in the getEmployeeByEmpId function call this function to handle the error
       error: (err) => {
         console.log(err) // logging the error
         this.errorMessage = err.message // setting the error message
@@ -80,7 +81,7 @@ export class ProfileComponent {
     console.log(`firstName: ${firstName}, lastName: ${lastName}` ) // logging the first name and last name
 
     // call to the updateProfile function in the userService
-    this.userService. updatedProfile(this.user.email, firstName, lastName). subscribe({
+     this.employeeService.updateEmployeeProfile(this.user.email, firstName, lastName).subscribe({
       // on next function form the observable response from the updateProfile function
       next: (res) => {
         console.log(`Response from API call: ${res}`) // logging the response
@@ -106,7 +107,7 @@ export class ProfileComponent {
 
   // function to close the profile form and reset the form
   close() {
-    this.profileForm.reset() //restting the profile form
+    this.profileForm.reset() //resetting the profile form
     this.profileForm.controls['firstName'].setValue(this.user.firstName) // setting the first name field in the profile form
     this.profileForm.controls['lastName'].setValue(this.user.lastName) // setting the last name field in the profile form
     this.profileOnSaveError = '' // resetting the error message variable
