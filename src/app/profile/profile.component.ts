@@ -8,9 +8,8 @@
 import { Component } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { UserInterface } from '../user-interface';
-import { EmployeeService } from '../shared/employee.service';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -36,23 +35,23 @@ export class ProfileComponent {
   })
 
   //Injecting the user-interface, CookieService, Router, and HttpClient
-  constructor (private cookieService: CookieService, private employeeService: EmployeeService, private fb: FormBuilder) {
+  constructor (private cookieService: CookieService, private fb: FormBuilder, private http: HttpClient) {
     this.user = {} as UserInterface // initializing the user variable
     this.errorMessage = '' // initializing the error message variable
     this.profileOnSaveError = '' // initializing the error message variable
     this.profileOnSaveSuccess = '' // initializing the success message variable
     this.userInitials = '' // initializing the user initials variable
     this.role = '' // initializing the role variable
-    this.randomAvatarColor = this.avatarColors[Math.floor(Math.random() * this.avatarColors.length)] // setting the random avatar color variable
+    this.randomAvatarColor = this.avatarColors[Math.floor(Math.random() * this.avatarColors.length)]; // setting the random avatar color variable
 
     const cookie = JSON.parse(this.cookieService.get('session_user')) //parsing the cookie
 
     console.log('cookie', cookie) // logging the cookie
 
     // call to the get
-    this.employeeService.getEmployeeById(cookie.empId).subscribe({
+    this.http.get(`/api/users/${cookie}`).subscribe({
       //
-      next: (res) => {
+      next: (res: any) => {
         this.user = res // setting the user variable to the response
         console.log('user', this.user) // logging the user variable
       },
@@ -81,7 +80,7 @@ export class ProfileComponent {
     console.log(`firstName: ${firstName}, lastName: ${lastName}` ) // logging the first name and last name
 
     // call to the updateProfile function in the userService
-     this.employeeService.updateEmployeeProfile(this.user.email, firstName, lastName).subscribe({
+     this.http.put(this.user.email, firstName, lastName).subscribe({
       // on next function form the observable response from the updateProfile function
       next: (res) => {
         console.log(`Response from API call: ${res}`) // logging the response
