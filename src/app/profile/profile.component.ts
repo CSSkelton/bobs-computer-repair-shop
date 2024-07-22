@@ -49,7 +49,7 @@ export class ProfileComponent {
     console.log('cookie', cookie) // logging the cookie
 
     // call to the get
-    this.http.get(`/api/users/${cookie}`).subscribe({
+    this.http.get(`/api/users/${cookie.email}`).subscribe({
       //
       next: (res: any) => {
         this.user = res // setting the user variable to the response

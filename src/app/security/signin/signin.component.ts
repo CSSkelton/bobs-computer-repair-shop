@@ -39,6 +39,7 @@ export class SigninComponent {
       next: (user: any) => {
 
         const sessionCookie = {
+          email: email,
           firstName: user.firstName,
           lastName: user.lastName,
           role: user.role
