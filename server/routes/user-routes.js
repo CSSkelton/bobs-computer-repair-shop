@@ -569,34 +569,29 @@ router.get("/:email/security-questions", (req, res, next) => {
  *     application/json:
  *      schema:
  *       properties:
- *       email:
+ *        email:
  *         type: string
  *        fullName:
  *         type: string
  *        lineItems:
  *           type: array
- *            items:
- *              type: object
+ *           items:
+ *            type: object
  *            properties:
- *             items:
- *               type: array
- *                 items:
- *                   type: object
- *                 properties:
- *                     itemName:
- *                        type: string
- *                     itemPrice:
- *                        type: string
- *          partsNumber:
- *            type: string
- *          laborAmt:
- *            type: string
- *          lineItemTotal:
- *            type: string
- *          invoiceTotal:
- *            type: string
- *          orderDate:
- *            type: string
+ *             itemName:
+ *              type: string
+ *             itemPrice:
+ *              type: string
+ *        partsNumber:
+ *          type: string
+ *        laborAmt:
+ *          type: string
+ *        lineItemTotal:
+ *          type: string
+ *        invoiceTotal:
+ *          type: string
+ *        orderDate:
+ *          type: string
  *   responses:
  *    '200':
  *     description: Invoice created

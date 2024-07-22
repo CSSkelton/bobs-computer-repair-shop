@@ -36,36 +36,21 @@ router.get('/purchases-graph', (req, res, next) => {
   try {
     mongo(async (db) => {
       const data = await db.collection("invoices").aggregate([
-        {
-          $unwind: '$lineItems'
-        },
-        {
-          $group:
-          {
-            '_id':
-            {
-              'service': '$lineItems.title',
-              'price': '$lineItems.price'
-            },
-            'count':
-            {
-              $sum: 1
-            }
-          }
-        },
-        {
-          $sort:
-          {
-            '_id.service': 1
-          }
-        }
-      ])
+        { $unwind: '$lineItems' },
+        { $group: { '_id': '$lineItems.itemName',
+                    'count':  {  $sum: 1  } } },
+        { $sort: { '_id.service': 1  } }
+      ]).toArray();
 
       if (!data) {
         return next(createError(400, 'Data not found'))
       }
 
-      console.log(data);
+      console.log(typeof(data));
+
+      console.log(data)
+
+
 
       res.status(200).send(data);
     }, next);
