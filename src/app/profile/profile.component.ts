@@ -80,7 +80,7 @@ export class ProfileComponent {
     console.log(`firstName: ${firstName}, lastName: ${lastName}` ) // logging the first name and last name
 
     // call to the updateProfile function in the userService
-    this.userService. updatedProfile(this.user.email, firstName, lastName). subsribe({
+    this.userService. updatedProfile(this.user.email, firstName, lastName). subscribe({
       // on next function form the observable response from the updateProfile function
       next: (res) => {
         console.log(`Response from API call: ${res}`) // logging the response
@@ -106,6 +106,10 @@ export class ProfileComponent {
 
   // function to close the profile form and reset the form
   close() {
-    
+    this.profileForm.reset() //restting the profile form
+    this.profileForm.controls['firstName'].setValue(this.user.firstName) // setting the first name field in the profile form
+    this.profileForm.controls['lastName'].setValue(this.user.lastName) // setting the last name field in the profile form
+    this.profileOnSaveError = '' // resetting the error message variable
+    this.profileOnSaveSuccess = '' // resetting the success message variable
   }
 }
