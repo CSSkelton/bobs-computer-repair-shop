@@ -573,25 +573,25 @@ router.get("/:email/security-questions", (req, res, next) => {
  *         type: string
  *        fullName:
  *         type: string
- *        lineItems:
- *           type: array
- *           items:
- *            type: object
- *            properties:
- *             itemName:
- *              type: string
- *             itemPrice:
- *              type: string
  *        partsNumber:
- *          type: string
+ *         type: string
  *        laborAmt:
- *          type: string
+ *         type: string
  *        lineItemTotal:
- *          type: string
+ *            type: string
  *        invoiceTotal:
- *          type: string
+ *            type: string
  *        orderDate:
- *          type: string
+ *            type: string
+ *        lineItems:
+ *          type: array
+ *          items:
+ *              type: object
+ *              properties:
+ *                itemName:
+ *                  type: string
+ *                itemPrice:
+ *                  type: string
  *   responses:
  *    '200':
  *     description: Invoice created
@@ -600,7 +600,7 @@ router.get("/:email/security-questions", (req, res, next) => {
  *    '500':
  *     description: Internal Server Error
  *   tags:
- *    - User
+ *    - Invoice
  */
 router.post("/invoice", (req, res, next) => {
   console.log("create invoice api....");
