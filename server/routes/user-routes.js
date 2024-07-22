@@ -561,7 +561,7 @@ router.get("/:email/security-questions", (req, res, next) => {
 router.put('/:email/update-profile', (req, res, next) => {
   try {
     const email = req.params.email
-    const employee = req.body
+    const user = req.body
 
     mongo(async db => {
       const result = await db.collection('users').updateOne(
@@ -574,7 +574,7 @@ router.put('/:email/update-profile', (req, res, next) => {
         }
       )
 
-      res.status(204).send()
+      res.status(204).send(result)
     }, next)
   } catch(err) {
     console.error('err', err)

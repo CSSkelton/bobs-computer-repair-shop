@@ -27,6 +27,7 @@ export class ProfileComponent {
   role: string // role variable
   avatarColors: Array<string> = ['#0e1a40', '#222f5b', '#bebebe', '#946b3d'] //array of theme colors
   randomAvatarColor: string
+  email: string
 
   // form for the profile component with the first name and last name fields
   profileForm: FormGroup = this.fb.group({
@@ -45,11 +46,12 @@ export class ProfileComponent {
     this.randomAvatarColor = this.avatarColors[Math.floor(Math.random() * this.avatarColors.length)]; // setting the random avatar color variable
 
     const cookie = JSON.parse(this.cookieService.get('session_user')) //parsing the cookie
+    this.email = cookie.email
 
     console.log('cookie', cookie) // logging the cookie
 
     // call to the get
-    this.http.get(`/api/users/${cookie.email}`).subscribe({
+    this.http.get(`/api/users/${this.email}`).subscribe({
       //
       next: (res: any) => {
         this.user = res // setting the user variable to the response
@@ -80,7 +82,7 @@ export class ProfileComponent {
     console.log(`firstName: ${firstName}, lastName: ${lastName}` ) // logging the first name and last name
 
     // call to the updateProfile function in the userService
-     this.http.put(this.user.email, firstName, lastName).subscribe({
+    this.http.put(`/api/users/${this.email}/update-profile`, {firstName, lastName}).subscribe({
       // on next function form the observable response from the updateProfile function
       next: (res) => {
         console.log(`Response from API call: ${res}`) // logging the response
