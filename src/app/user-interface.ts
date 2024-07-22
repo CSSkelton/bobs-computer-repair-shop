@@ -6,6 +6,7 @@
 import { ISecurityQuestion } from './security-question-interface';
 
 export interface UserInterface {
+  getuserByemail(email: any): unknown;
   email: string;
   password: string;
   firstName: string;
