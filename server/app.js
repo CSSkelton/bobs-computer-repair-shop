@@ -15,6 +15,7 @@ const swaggerJsdoc = require('swagger-jsdoc');
 const userRoute = require('./routes/user-routes');
 const securityRoute = require('./routes/security-routes');
 const invoiceRoute = require('./routes/invoice-routes');
+const port = process.env.PORT || 4000;
 
 // Create the Express app
 const app = express()
