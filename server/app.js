@@ -26,6 +26,7 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, '../dist/bcrs')))
 app.use('/', express.static(path.join(__dirname, '../dist/bcrs')))
+app.listen(port);
 
 
 const options = {
