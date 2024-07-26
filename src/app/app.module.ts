@@ -45,6 +45,9 @@ import { UserGuideComponent } from './user-guide/user-guide.component';
 import { ServiceRepairguideComponent } from './faq/Instructions/service-repairguide/service-repairguide.component';
 import { UserConfiguguideComponent } from './faq/Instructions/user-configuguide/user-configuguide.component';
 import { ResetPasswordguideComponent } from './faq/Instructions/reset-passwordguide/reset-passwordguide.component';
+import { InvoiceGuideComponent } from './faq/Instructions/invoice-guide/invoice-guide.component';
+import { RegisterGuideComponent } from './faq/Instructions/register-guide/register-guide.component';
+import { PurchaseServiceguideComponent } from './faq/Instructions/purchase-serviceguide/purchase-serviceguide.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +72,9 @@ import { ResetPasswordguideComponent } from './faq/Instructions/reset-passwordgu
     ServiceRepairguideComponent,
     UserConfiguguideComponent,
     ResetPasswordguideComponent,
+    InvoiceGuideComponent,
+    RegisterGuideComponent,
+    PurchaseServiceguideComponent,
   ],
   imports: [
     BrowserModule,

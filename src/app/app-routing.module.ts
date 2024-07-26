@@ -28,6 +28,9 @@ import { UserGuideComponent } from './user-guide/user-guide.component';
 import { ServiceRepairguideComponent } from './faq/Instructions/service-repairguide/service-repairguide.component';
 import { UserConfiguguideComponent } from './faq/Instructions/user-configuguide/user-configuguide.component';
 import { ResetPasswordguideComponent } from './faq/Instructions/reset-passwordguide/reset-passwordguide.component';
+import { InvoiceGuideComponent } from './faq/Instructions/invoice-guide/invoice-guide.component';
+import { RegisterGuideComponent } from './faq/Instructions/register-guide/register-guide.component';
+import { PurchaseServiceguideComponent } from './faq/Instructions/purchase-serviceguide/purchase-serviceguide.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -81,7 +84,22 @@ const routes: Routes = [
         path: 'reset-passwordguide',
         component: ResetPasswordguideComponent,
         title: 'BCRS: Reset Password-Guide',
-      }
+      },
+      {
+        path: 'invoice-guide',
+        component: InvoiceGuideComponent,
+        title: 'BCRS: Invoice-Guide',
+      },
+      {
+        path: 'register-guide',
+        component: RegisterGuideComponent,
+        title: 'BCRS: Register-Guide',
+      },
+      {
+        path: 'purchase-serviceguide',
+        component: PurchaseServiceguideComponent,
+        title: 'BCRS: Purchase-ServiceGuide',
+      },
     ],
   },
   {
