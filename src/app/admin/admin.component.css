@@ -2,3 +2,12 @@ th {
   position: sticky;
   top: 0;
 }
+
+.create-user-button {
+  background-color: #0e1a40;
+}
+
+.create-user-button a {
+  color: #ffffff;
+  text-decoration: none;
+}

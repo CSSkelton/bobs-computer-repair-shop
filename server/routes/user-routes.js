@@ -555,4 +555,116 @@ router.get("/:email/security-questions", (req, res, next) => {
   }
 });
 
+/**
+ * updateUserProfile
+ */
+router.put('/:email/update-profile', (req, res, next) => {
+  try {
+    const email = req.params.email
+    const user = req.body
+
+    mongo(async db => {
+      const result = await db.collection('users').updateOne(
+        { email },
+        {
+          $set: {
+            firstName: user.firstName,
+            lastName: user.lastName
+          }
+        }
+      )
+
+      res.status(204).send(result)
+    }, next)
+  } catch(err) {
+    console.error('err', err)
+    next(err)
+  }
+})
+
+//Create Invoice
+/**
+ * createInvoice
+ * @openapi
+ * /api/users/invoice:
+ *  post:
+ *   summary: post invoice details to db
+ *   description: Updates user document
+ *   requestBody:
+ *    description: invoice details
+ *    content:
+ *     application/json:
+ *      schema:
+ *       properties:
+ *        email:
+ *         type: string
+ *        fullName:
+ *         type: string
+ *        partsNumber:
+ *         type: string
+ *        laborAmt:
+ *         type: string
+ *        lineItemTotal:
+ *            type: string
+ *        invoiceTotal:
+ *            type: string
+ *        orderDate:
+ *            type: string
+ *        lineItems:
+ *          type: array
+ *          items:
+ *              type: object
+ *              properties:
+ *                itemName:
+ *                  type: string
+ *                itemPrice:
+ *                  type: string
+ *   responses:
+ *    '200':
+ *     description: Invoice created
+ *    '400':
+ *     description: Bad Request
+ *    '500':
+ *     description: Internal Server Error
+ *   tags:
+ *    - Invoice
+ */
+router.post("/invoice", (req, res, next) => {
+  console.log("create invoice api....");
+
+  console.log("req body: ", req.body);
+
+  const invoice = {
+    email: req.body.email,
+    fullName: req.body.fullName,
+    lineItems: req.body.lineItems,
+    partsNumber: req.body.partsNumber,
+    laborAmt: req.body.laborAmt,
+    lineItemTotal: req.body.lineItemTotal,
+    invoiceTotal: req.body.invoiceTotal,
+    orderDate: req.body.orderDate,
+  };
+
+  console.log("Invoice: ", invoice);
+  try {
+    mongo(async (db) => {
+      const result = await db.collection("invoices").insertOne(invoice);
+    }, next);
+    res.send(invoice);
+  } catch (err) {
+    console.log("err", err);
+    next(err);
+  }
+});
+
+//findInvoiceDetails
+router.get("/uses/:email", async (req, res) => {
+  try {
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: `Server Exception: ${err.message}`,
+    });
+  }
+});
 module.exports = router;

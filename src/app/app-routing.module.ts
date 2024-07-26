@@ -31,6 +31,10 @@ import { ResetPasswordguideComponent } from './faq/Instructions/reset-passwordgu
 import { InvoiceGuideComponent } from './faq/Instructions/invoice-guide/invoice-guide.component';
 import { RegisterGuideComponent } from './faq/Instructions/register-guide/register-guide.component';
 import { PurchaseServiceguideComponent } from './faq/Instructions/purchase-serviceguide/purchase-serviceguide.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ServiceRepairComponent } from './service-repair/service-repair.component';
+import { ServiceGraphComponent } from './admin/service-graph/service-graph.component';
+import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -100,6 +104,21 @@ const routes: Routes = [
         component: PurchaseServiceguideComponent,
         title: 'BCRS: Purchase-ServiceGuide',
       },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        title: 'BCRS: Profile',
+      },
+      {
+        path: 'service',
+        component: ServiceRepairComponent,
+        title: 'BCRS: Employee Directory',
+      },
+      {
+        path: 'invoice-summary',
+        component: InvoiceSummaryComponent,
+        title: 'BCRS: Invoice Summary',
+      },
     ],
   },
   {
@@ -120,7 +139,12 @@ const routes: Routes = [
       {
         path: 'edit/:email',
         component: EditUserComponent,
-        title: 'BCRS: Administration'
+        title: 'BCRS: Administration',
+      },
+      {
+        path: 'service-graph',
+        component: ServiceGraphComponent,
+        title: 'BCRS: Service Graph'
       }
     ],
     canActivate: [roleGuard],
@@ -144,19 +168,19 @@ const routes: Routes = [
       {
         path: 'verify-email',
         component: VerifyEmailComponent,
-        title: 'BCRS: Password Reset'
+        title: 'BCRS: Password Reset',
       },
       {
         path: 'verify-security-questions',
         component: VerifySecQuestionsComponent,
-        title: 'BCRS: Password Reset'
+        title: 'BCRS: Password Reset',
       },
       {
         path: 'password-reset',
         component: ResetComponent,
-        title: 'BCRS: Password Reset'
-      }
-    ]
+        title: 'BCRS: Password Reset',
+      },
+    ],
   },
 
   { path: '**', component: PagenotfoundComponent },

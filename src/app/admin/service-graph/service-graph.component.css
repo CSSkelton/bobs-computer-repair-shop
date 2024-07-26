@@ -1,0 +1,14 @@
+.chart-container {
+  max-height: 550px;
+  width: 100%;
+}
+
+canvas {
+  margin: auto auto;
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  padding: 20px 0;
+}

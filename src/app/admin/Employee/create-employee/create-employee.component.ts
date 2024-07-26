@@ -39,7 +39,8 @@ export class CreateEmployeeComponent {
       lastName: this.employeeForm.controls['lastName'].value,
       email: this.employeeForm.controls['email'].value,
       password: this.employeeForm.controls['password'].value,
-      role:this.employeeForm.controls['role'].value,
+      role: "user",
+      isDisabled: false
       // add phone number and address
     }
 

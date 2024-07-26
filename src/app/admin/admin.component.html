@@ -1,15 +1,11 @@
 <div class="container-fluid pt-2 full-height" style="height: 100vh">
-  <h1
-    class="text-center"
-    style="
-      margin: 25px auto 25px;
-      padding: 5px;
-      background-color: #946b2d;
-      width: 500px;
-    "
-  >
+  <h1 class="text-center" style="margin: 25px auto 25px; padding: 5px; background-color: #946b2d; width: 500px;">
     Admin
   </h1>
+
+  <button class="btn create-user-button">
+    <a routerLink="/admin/create-employee">Create User</a>
+  </button>
 
   <div class="admin-table-container col-sm-12">
     <table class="table table-bordered">
@@ -22,23 +18,19 @@
       </thead>
 
       <tbody *ngFor="let user of users">
-        <tr>
-          <td scope="row">
-            <a routerLink="/admin">
-              {{ user.firstName }} {{ user.lastName }}
-            </a>
-          </td>
+        <tr *ngIf="!user.isDisabled">
+          <td scope="row">{{ user.firstName }} {{ user.lastName }}</td>
           <td scope="row">{{ user.email }}</td>
           <td scope="row">{{ user.role }}</td>
           <td>
-            <a routerLink="/admin/edit/{{ user.email }}">
+            <a routerLink="/admin/edit/{{ user.email }}" class="btn">
               <span class="material-icons">edit</span>
             </a>
           </td>
           <td>
-            <a routerLink="/admin">
+            <button (click)="deleteUser(user.email)" class="btn">
               <span class="material-icons">delete</span>
-            </a>
+            </button>
           </td>
         </tr>
       </tbody>

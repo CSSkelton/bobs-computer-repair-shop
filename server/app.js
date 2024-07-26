@@ -14,6 +14,8 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const userRoute = require('./routes/user-routes');
 const securityRoute = require('./routes/security-routes');
+const invoiceRoute = require('./routes/invoice-routes');
+const port = process.env.PORT || 4000;
 
 // Create the Express app
 const app = express()
@@ -24,6 +26,7 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, '../dist/bcrs')))
 app.use('/', express.static(path.join(__dirname, '../dist/bcrs')))
+app.listen(port);
 
 
 const options = {
@@ -43,6 +46,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
 app.use("/api/users", userRoute);
 app.use("/api/security", securityRoute);
+app.use("/api/invoices", invoiceRoute);
 
 // error handler for 404 errors
 app.use(function(req, res, next) {

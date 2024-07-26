@@ -12,4 +12,5 @@ export interface Employee {
   email: string
   password: string
   role:string
+  isDisabled: boolean
 }

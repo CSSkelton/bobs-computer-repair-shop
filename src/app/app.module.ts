@@ -38,9 +38,15 @@ import { FaqComponent } from './faq/faq.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { EmployeeDirectoryComponent } from './employee-directory/employee-directory.component';
 
+import { ChartModule } from 'primeng/chart';
+
 import { VerifyEmailComponent } from './security/password-reset/verify-email/verify-email.component';
 import { VerifySecQuestionsComponent } from './security/password-reset/verify-sec-questions/verify-sec-questions.component';
 import { ResetComponent } from './security/password-reset/reset/reset.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ServiceRepairComponent } from './service-repair/service-repair.component';
+import { ServiceGraphComponent } from './admin/service-graph/service-graph.component';
+import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
 import { UserGuideComponent } from './user-guide/user-guide.component';
 import { ServiceRepairguideComponent } from './faq/Instructions/service-repairguide/service-repairguide.component';
 import { UserConfiguguideComponent } from './faq/Instructions/user-configuguide/user-configuguide.component';
@@ -68,6 +74,12 @@ import { PurchaseServiceguideComponent } from './faq/Instructions/purchase-servi
     VerifyEmailComponent,
     VerifySecQuestionsComponent,
     ResetComponent,
+    ProfileComponent,
+    ResetComponent,
+    ServiceRepairComponent,
+    ServiceGraphComponent,
+    InvoiceSummaryComponent,
+    ResetComponent,
     UserGuideComponent,
     ServiceRepairguideComponent,
     UserConfiguguideComponent,
@@ -94,6 +106,8 @@ import { PurchaseServiceguideComponent } from './faq/Instructions/purchase-servi
     MatListModule,
     FormsModule,
     MatSelectModule,
+    ReactiveFormsModule,
+    ChartModule,
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],

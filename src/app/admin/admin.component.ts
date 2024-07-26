@@ -4,7 +4,7 @@
  * Date: 07.03.2024
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 
@@ -14,6 +14,7 @@ export interface User {
   lastName: string;
   password: string;
   role: string;
+  isDisabled: boolean;
 }
 
 export interface UserViewModel {
@@ -45,5 +46,24 @@ export class AdminComponent {
       },
       complete: () => {},
     });
+  }
+
+  deleteUser(email: string) {
+    console.log(`User: ${email}`);
+
+    if (!confirm('Are you sure you want to delete this user?')) {
+      return
+    }
+
+    this.http.delete(`/api/users/${email}`).subscribe({
+      next: (result: any) => {
+        console.log('User deleted with id', email)
+
+        this.users.filter(u => u.email = email)
+      },
+      error: (err) => {
+        console.error('Unable to delete user with email ' + email, err)
+      }
+    })
   }
 }

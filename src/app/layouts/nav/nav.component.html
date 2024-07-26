@@ -20,10 +20,11 @@
     </div>
     <a class="nav-link" routerLink="/admin" *ngIf="isAdmin">Administration </a>
     <a class="nav-link" routerLink="/faq">FAQ</a>
+    <a class="nav-link" routerLink="/admin/service-graph" *ngIf="isAdmin">Service Graph</a>
+    <a class="nav-link" routerLink="/service">Service Repair</a>
     <a class="nav-link" routerLink="/">Service Repair</a>
-    <a class="nav-link" routerLink="/">Profile</a>
+    <a class="nav-link" routerLink="/profile">Profile</a>
     <a class="nav-link" routerLink="/employee">Employee Directory</a>
-   
 
     <button (click)="signOut()" class="button button2">Sign Out</button>
   </div>
