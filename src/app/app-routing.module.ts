@@ -26,6 +26,7 @@ import { VerifySecQuestionsComponent } from './security/password-reset/verify-se
 import { ResetComponent } from './security/password-reset/reset/reset.component';
 import { UserGuideComponent } from './user-guide/user-guide.component';
 import { ServiceRepairguideComponent } from './faq/Instructions/service-repairguide/service-repairguide.component';
+import { UserConfiguguideComponent } from './user-configuguide/user-configuguide.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -66,7 +67,13 @@ const routes: Routes = [
       {
         path: 'service-repairguide',
         component: ServiceRepairguideComponent,
-        title: 'BCRS: Service Repair-Guide'
+        title: 'BCRS: Service Repair-Guide',
+
+      },
+      {
+        path: 'user-configuguide',
+        component: UserConfiguguideComponent,
+        title: 'BCRS: User Configure-Guide',
 
       },
     ],
