@@ -1,3 +1,12 @@
+/**
+ * Title: purchase-serviceguide.component.ts
+ * Author: Professor Krasso
+ * Editor: George Taylor
+ * Date: 07.25.2024
+ * Description: Purchase Service Guide
+ */
+
+
 import { Component } from '@angular/core';
 
 @Component({

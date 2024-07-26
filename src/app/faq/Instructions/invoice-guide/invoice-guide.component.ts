@@ -1,3 +1,12 @@
+/**
+ * Title: invoice-guide.component.ts
+ * Author: Professor Krasso
+ * Editor: George Taylor
+ * Date: 07.25.2024
+ * Description: Invoice Summary Guide
+ */
+
+
 import { Component } from '@angular/core';
 
 @Component({
