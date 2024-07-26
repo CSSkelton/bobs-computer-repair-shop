@@ -47,7 +47,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { ServiceRepairComponent } from './service-repair/service-repair.component';
 import { ServiceGraphComponent } from './admin/service-graph/service-graph.component';
 import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
-import { DeleteUserComponent } from './admin/delete-user/delete-user.component';
 
 @NgModule({
   declarations: [
@@ -68,12 +67,11 @@ import { DeleteUserComponent } from './admin/delete-user/delete-user.component';
     VerifyEmailComponent,
     VerifySecQuestionsComponent,
     ResetComponent,
-    ProfileComponent
+    ProfileComponent,
     ResetComponent,
     ServiceRepairComponent,
     ServiceGraphComponent,
-    InvoiceSummaryComponent,
-    DeleteUserComponent
+    InvoiceSummaryComponent
   ],
   imports: [
     BrowserModule,

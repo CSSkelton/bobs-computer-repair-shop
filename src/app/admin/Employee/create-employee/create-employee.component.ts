@@ -40,6 +40,7 @@ export class CreateEmployeeComponent {
       email: this.employeeForm.controls['email'].value,
       password: this.employeeForm.controls['password'].value,
       role: "user",
+      isDisabled: false
       // add phone number and address
     }
 
