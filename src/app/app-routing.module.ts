@@ -26,6 +26,7 @@ import { ResetComponent } from './security/password-reset/reset/reset.component'
 import { ServiceRepairComponent } from './service-repair/service-repair.component';
 import { ServiceGraphComponent } from './admin/service-graph/service-graph.component';
 import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
+import { DeleteUserComponent } from './admin/delete-user/delete-user.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -87,6 +88,11 @@ const routes: Routes = [
         path: 'service-graph',
         component: ServiceGraphComponent,
         title: 'BCRS: Service Graph'
+      },
+      {
+        path: 'delete/:email',
+        component: DeleteUserComponent,
+        title: 'BCRS: Administration'
       }
     ],
     canActivate: [roleGuard],
