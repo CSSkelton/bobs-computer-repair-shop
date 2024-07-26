@@ -555,6 +555,33 @@ router.get("/:email/security-questions", (req, res, next) => {
   }
 });
 
+/**
+ * updateUserProfile
+ */
+router.put('/:email/update-profile', (req, res, next) => {
+  try {
+    const email = req.params.email
+    const user = req.body
+
+    mongo(async db => {
+      const result = await db.collection('users').updateOne(
+        { email },
+        {
+          $set: {
+            firstName: user.firstName,
+            lastName: user.lastName
+          }
+        }
+      )
+
+      res.status(204).send(result)
+    }, next)
+  } catch(err) {
+    console.error('err', err)
+    next(err)
+  }
+})
+
 //Create Invoice
 /**
  * createInvoice

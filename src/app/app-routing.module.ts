@@ -23,6 +23,7 @@ import { EmployeeDirectoryComponent } from './employee-directory/employee-direct
 import { VerifyEmailComponent } from './security/password-reset/verify-email/verify-email.component';
 import { VerifySecQuestionsComponent } from './security/password-reset/verify-sec-questions/verify-sec-questions.component';
 import { ResetComponent } from './security/password-reset/reset/reset.component';
+import { ProfileComponent } from './profile/profile.component';
 import { ServiceRepairComponent } from './service-repair/service-repair.component';
 import { ServiceGraphComponent } from './admin/service-graph/service-graph.component';
 import { InvoiceSummaryComponent } from './invoice-summary/invoice-summary.component';
@@ -51,6 +52,11 @@ const routes: Routes = [
         path: 'employee',
         component: EmployeeDirectoryComponent,
         title: 'BCRS: Employee Directory',
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        title: 'BCRS: Profile',
       },
       {
         path: 'service',
