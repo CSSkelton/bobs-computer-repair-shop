@@ -10,7 +10,8 @@ const { mongo } = require("../utils/mongo");
 const createError = require("http-errors");
 const router = express.Router();
 const Ajv = require("ajv");
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
+const salt = 10;
 const ajv = new Ajv();
 
 /**
@@ -77,9 +78,9 @@ router.post('/signin', (req, res, next) => {
         return next(createError(404, `No user found with ${signin.email}`))
       }
 
-//    let passwordIsValid = bcrypt.compareSync(signin.password, user.password)
-//    [!passwordIsValid ] other conditional - use if testing on new user accounts
-      if (signin.password != user.password) {
+      let passwordIsValid = bcrypt.compareSync(signin.password, user.password)
+  //  [!passwordIsValid ] other conditional - use if testing on new user accounts
+      if (!passwordIsValid) {
         console.error('Invalid user password');
         return next(createError(400, 'Invalid password'))
       }
@@ -332,8 +333,8 @@ router.post('/users/:email/reset-password', (req, res, next) => {
     // }
 
     mongo(async db => {
-      const user = await db.collection('users').findOne({ email: email })
-      const salt = await bcrypt.genSalt(10)
+      // const user = await db.collection('users').findOne({ email: email })
+      // const salt = await bcrypt.genSalt(10)
 
       if (!user) {
         const err = new Error('Not Found')
@@ -345,7 +346,7 @@ router.post('/users/:email/reset-password', (req, res, next) => {
 
       console.log('Selected User', user)
 
-      const hashedPassword = await bcrypt.hash(password, salt)
+      const hashedPassword = bcrypt.hashSync(password, salt)
       console.log(password)
       console.log(hashedPassword)
 
@@ -354,13 +355,74 @@ router.post('/users/:email/reset-password', (req, res, next) => {
       const result = await db.collection('users').updateOne(
         { email: email },
         {
-          $set: { password: password }
+          $set: { password: hashedPassword }
         }
       )
 
       console.log('MongoDB update result', result)
 
-      res.status(204).send()
+      res.status(204).send();
+    }, next)
+  } catch (err) {
+    console.log(`API Error: ${err.message}`)
+    next(err)
+  }
+})
+
+/**
+ * hashPasswords
+ * @openapi
+ * /api/security/{email}/hash:
+ *  post:
+ *   tags:
+ *    - Password
+ *   description: Hash previously stored passwords
+ *   summary: Hash passwords
+ *   parameters:
+ *    - name: email
+ *      in: path
+ *      required: true
+ *      description: User Email
+ *      schema:
+ *       type: string
+ *   responses:
+ *    '204':
+ *     description: OK
+ *    '400':
+ *     description: Bad Request
+ *    '404':
+ *     description: User not found
+ *    '500':
+ *     description: Internal server error
+ */
+router.post('/:email/hash', (req, res, next) => {
+  try {
+    const email = req.params.email
+
+    mongo(async db => {
+
+      const user = await db.collection('users').findOne({email})
+
+      if (!user) {
+        const err = new Error('Not Found')
+        err.status = 404
+        console.log('User not found', err)
+        next(err)
+        return
+      }
+
+      console.log('Selected User', user)
+
+      const hashedPassword = bcrypt.hashSync(user.password, salt)
+
+      const result = await db.collection('users').updateOne(
+        {email},
+        {
+          $set: {password: hashedPassword}
+        }
+      )
+
+      res.status(204).send();
     }, next)
   } catch (err) {
     console.log(`API Error: ${err.message}`)
