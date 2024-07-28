@@ -23,47 +23,27 @@ export class ServiceGraphComponent implements OnInit {
     this.http.get('/api/invoices/purchases-graph').subscribe({
       next: (dbData: any) => {
         console.log(dbData)
-        /**
-         * Returns the following data structure:
-         * [
-            { _id: 'PC Tune-up', count: 2 },
-            { _id: 'Password Reset', count: 3 },
-            { _id: 'Disk clean-up', count: 3 },
-            { _id: 'Software Installation', count: 3 },
-            { _id: 'Keyboard cleaning', count: 2 },
-            { _id: 'Spyware Removal', count: 2 },
-            { _id: 'Replacement', count: 3 },
-            { _id: 'Ram Upgrade', count: 1 }
-           ]
-         */
 
-        // const chart = new Chart("serviceGraph", {
-        //   type: 'pie',
-        //   data: {
-        //     labels: dbData.map(entry => entry._id),
-        //     datasets: [{
-        //       data: dbData.map(entry => entry.count),
-        //       backgroundColor: ['#0e1a40']
-        //     }]
-        //   }
-        // })
+        this.mapChartData(dbData);
       },
       error: () => {
         console.error('Error receiving data')
       },
       complete: () => {}
     })
+  }
 
-    // This isn't pulling dynamic data
-    // Can't figure out how to bind it with data from API
-    // Tried directly assigning (see above) and creating new arrays to push to
-    // Using both forEach and map results in errors
+
+  mapChartData(data: any): void {
+    const labels = data.map((el: any) => el._id);
+    const count = data.map((el: any) => el.count);
+
     const chart = new Chart("serviceGraph", {
       type: 'pie',
       data: {
-        labels: ['Password Reset', 'Spyware Removal', 'RAM Upgrade', 'Software Installation', 'PC Tune-up', 'Keyboard Cleaning', 'Disk clean-up', 'Replacement'],
+        labels: labels,
         datasets: [{
-          data: [5, 13, 5, 17, 6, 1, 20],
+          data: count,
           backgroundColor: ['#946b2d',  '#222f5b','#5d5d5d', '#0e1a40']
         }]
       }
