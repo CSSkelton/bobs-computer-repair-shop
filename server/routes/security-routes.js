@@ -333,7 +333,7 @@ router.post('/users/:email/reset-password', (req, res, next) => {
     // }
 
     mongo(async db => {
-      // const user = await db.collection('users').findOne({ email: email })
+      const user = await db.collection('users').findOne({ email: email })
       // const salt = await bcrypt.genSalt(10)
 
       if (!user) {
